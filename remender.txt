@@ -1,0 +1,183 @@
+assets folder is where we put css and imgs
+components is where we create reusable components
+view folder represent the pages then we put the finaly in the app.vue
+main.css is imported to the main.js
+
+
+****************************************
+
+====VUE.JS==========
+
+GET AND RUNNING WITH VUE.JS 
+
+==> npm create vue@latest nameOffolder
+==> cd toFolder 
+==> npm i
+
+FOR VS CODE INSTALE VUE OFFICIAL EXTENSION
+
+-THE THREE MAIN PARTS : SCRIPT , TEMPLATE . STYLE THEY ARE FORMING THE VUE FILE
+-iN THE INDEX,HTML THERE IS A DIV WITH THE ID OF "App" IT A SPECIAL DIV THAT ALL COMPONANTS WILL GO THERE 
+
+-- THERE IS TWO TYPES OF VUES API THE OPTIONS AND THE PLUGGINS THE DEFFRENCE ON THE SYNTEXE (MAINLLY ONE IS MADE TO BE COMMITEL, STRICT AND EXPLICITE (THE OPTIONS) THE OTHER HAS THE SIMPLIFIED SYTAXE))
+
+! the options 
+
+<script> 
+export default{
+	data(){
+	    return{object of data};
+	},
+
+	methodes : {
+		// methodes in here ...
+	}
+};
+
+<script/>
+
+! the composition api 
+
+
+** ref func is simply like useState in react so it like marking the data that it can be changed .
+      then to access the data value by nameOfdata.value **
+
+1-long version :
+<script> 
+import {ref} from "vue"
+
+export default {
+	setup() {
+	   // evry data that is ment to be rendered in the page and can change needs to be inside the ref(data) func.
+	  //data , functions , methodes ...
+	
+		return{
+		   data , func , methodes *Signetures
+		}
+	},
+}
+< script/>
+
+
+1-short version :
+
+<script setup> 
+import {ref} from "vue"
+
+	   // evry data that is ment to be rendered in the page and can change needs to be inside the ref(data) func.
+	  //data , functions , methodes ..
+< script/>
+
+!! Derectives : are the ways that we can passe data from the script to the template more clearly but not exactly from the js to the html
+the way they are used are in the same way that html attribut works in fact  can think about them as a spcial case of html attribute that being added by
+vue , all of them start by "v-" prefixe then the second part which is a directive
+
+somme directives : v-if="condition" , v-else-if="condition" , v-else , v-for="(data, index) in array/list " :key="unique" ,
+v-bind:href="data"  === :href="data"
+v-bind:url="data" === :url="data"
+v-on:event="function" (events --> click , load , change ... ) === @event="function"
+@event.prevent="function()"
+v-model="var/data" it replaces the value attribute on a form but with binding = simply it assigning the value of a data that can be changed to the value of the input.
+to write the data inside the html element it done inside {{data}}.
+
+-----------------------NOT MINE BUT BETTER THEN WHAT I CAN EXPLAIN ---------
+#Registering Lifecycle Hooks
+
+MOUNT === تحميل 
+
+For example, the onMounted hook can be used to run code after the component has finished the initial rendering and created the DOM nodes:
+
+vue
+<script setup>
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  console.log(`the component is now mounted.`)
+})
+</script>
+There are also other hooks which will be called at different stages of the instance's lifecycle, with the most commonly used being onMounted, onUpdated, and onUnmounted.
+
+When calling onMounted, Vue automatically associates the registered callback function with the current active component instance. This requires these hooks to be registered synchronously during component setup. For example, do not do this:
+
+js
+setTimeout(() => {
+  onMounted(() => {
+    // this won't work.
+  })
+}, 100)
+
+Do note this doesn't mean that the call must be placed lexically inside setup() or <script setup>. onMounted() can be called in an external function as long as the call stack is synchronous and originates from within setup().
+
+------------------------------
+
+*to get images , pics bascly anything from those files to the html tags like img
+it not valid to write src="path" but it obloged to bind it that means anything 
+outside the file need to be imported and that make since after all we are at .vue
+file and not a .html file even though that most html still valid 
+
+* bcs vue is imported through the npm package and it inialialisation also by the same package 
+we have a file/directory structer like any other node projects
+express , react ... and for that there is some of the naming conveitions but at the end we can just
+ignore it which is not recommended , any way what am pointing is the "src" folder
+that contains all the source code we can refrence to it by @
+
+#PROPS
+
+Remender : props is the parameters or holders of data that can be passed to a componenet from the parent or the componnent that using it 
+(All props form a one-way-down binding between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent's state, which can make your app's data flow harder to understand.)
+
+<Navbar  name="rayan" age="21" />
+
+in the Navbar componenet we get them by :
+<script setup>
+import {defineProps} from 'vue';
+
+defineProps ({
+	name : {
+	   type : string,
+	    default : "no name"
+	},
+	age: {
+	   type : Number ,
+	    default : 18
+	}
+})
+<script/>
+
+
+
+#Static vs. Dynamic Props
+ou've also seen props assigned dynamically with v-bind or its : shortcut, such as in:
+
+template
+<!-- Dynamically assign the value of a variable -->
+<BlogPost :title="post.title" />
+
+<!-- Dynamically assign the value of a complex expression -->
+<BlogPost :title="post.title + ' by ' + post.author.name" />
+
+
+
+#Passing Different Value Types
+template
+ Even though `42` , the array or the object are static, we need v-bind to tell Vue that 
+this is a JavaScript expression rather than a string.      
+<BlogPost :likes="42" />
+
+<BlogPost :comment-ids=" 
+<BlogPost
+  :author="{
+    name: 'Veronica',
+    company: 'Veridian Dynamics'
+  }"
+ />
+
+
+!!!!NOTE
+const props = defineProps(['foo'])
+props.foo = 'bar'; ❌ warning, props are readonly!
+
+-------------
+#INCLUDING A CONPONENTS INSIDE ANOTHER : THEN WE NEED TO ADD A SLOT TAG "<slot><slot/>" that indecat that when
+we wrap up tags or conponents by this component tag it will include the html inside the <slot><slot/>
+
