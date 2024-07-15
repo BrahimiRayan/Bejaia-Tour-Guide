@@ -53,7 +53,6 @@ onMounted(() => {
             p.push(place);
         });
         places.value = p;
-        console.log(places.value);
     });
 });
 </script>

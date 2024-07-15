@@ -20,9 +20,7 @@
 
 <script setup>
 import { RouterLink , RouterView } from "vue-router";
-
-import router from '@/router/index.js'
-
+// console.log(process.env.VUE_APP_FIREBASE_API_KEY);
 
 
 </script>
@@ -34,6 +32,50 @@ import router from '@/router/index.js'
     color: var(--secondaryColor);
     text-decoration : none;
     font-weight: 700;
+}
+
+
+
+header{
+    height: 70px;
+    width: 100%;
+    max-width: var(--maxscreenwidth);
+    background: var(--mainColor);
+    margin: 0 auto 10px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* justify-content: center; */
+    border-radius: 10px;
+}
+
+header .logo {
+    height: 80px;
+    width: 80px;
+    margin-left: 10%;
+    text-align: center;
+    background-image: url('@/assets/pics/Logo!.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+header nav{
+    margin-right: 5%;
+}
+
+header nav ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+
+    color: var(--secondaryColor);
+}
+
+header nav ul li{
+    /* width: fit-content; */
+    font-size: 1.2rem;
+    margin-left: 2rem;
 }
 
 </style>
