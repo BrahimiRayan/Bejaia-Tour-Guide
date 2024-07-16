@@ -107,3 +107,10 @@ main{
 
     z-index: 20;
 }
+
+
+.router-link-active{
+    background-image: url("../assets/pics/icons/click.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}

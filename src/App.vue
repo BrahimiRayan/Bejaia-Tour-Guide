@@ -32,9 +32,8 @@ import { RouterLink , RouterView } from "vue-router";
     color: var(--secondaryColor);
     text-decoration : none;
     font-weight: 700;
+    padding-left: 26px;
 }
-
-
 
 header{
     height: 70px;
