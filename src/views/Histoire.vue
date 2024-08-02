@@ -12,18 +12,17 @@
 </template>
 
 <script setup>
-import { onSnapshot, collection } from 'firebase/firestore';
+import { onSnapshot, collection , query , orderBy  } from 'firebase/firestore';
 import { onMounted, ref } from 'vue';
 import { db } from '@/Firebase/firebase.js';
 
 const histoires = ref([]);
+const HistoireColectionRef = collection(db , 'histoire')
 
-// Function to get the correct image URL
-
-
+const q = query(HistoireColectionRef , orderBy('pos'))
 
 onMounted(() => {
-    onSnapshot(collection(db, 'histoire'), (querySnapshot) => {
+    onSnapshot(q, (querySnapshot) => {
         const p = [];
         querySnapshot.forEach((doc) => {
             const histoireObj = {
@@ -33,6 +32,7 @@ onMounted(() => {
                 img: doc.data().img
             };
             p.push(histoireObj);
+            console.log(doc.data().titre +" positioned at " + doc.data().pos)
         });
         histoires.value = p;
     });

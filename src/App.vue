@@ -12,15 +12,16 @@
         
     </header>
     <main>
-        
         <RouterView />
     </main>
+    <Footer/>
 </template>
 
 
 <script setup>
 import { RouterLink , RouterView } from "vue-router";
 // console.log(process.env.VUE_APP_FIREBASE_API_KEY);
+import Footer from '@/components/Footer.vue'
 
 
 </script>

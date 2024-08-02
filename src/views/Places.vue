@@ -9,12 +9,12 @@
                     <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><img src="@/assets/pics/svg/location.svg" class="svg" alt=""> OVRIRE DANS LA MAP</a>
                 </div>
                 <div class="placeImg">
-                    <img :src="`src/assets/pics/images/${place.img}.jpg`" alt="">
+                    <img :src="`src/assets/pics/images/${place.img}.jpg`" :alt="place.nom" :title="place.nom">
                 </div>
             </div>
             <div class="placeHolder" v-else>
                 <div class="placeImg">
-                    <img :src="`src/assets/pics/images/${place.img}.jpg`" alt="">
+                    <img :src="`src/assets/pics/images/${place.img}.jpg`" :alt="place.nom" :title="place.nom">
                 </div>
                 <div class="place-description">
                     <h2>{{ place.nom }}</h2>
@@ -51,6 +51,7 @@ onMounted(() => {
                 location: doc.data().location,
             };
             p.push(place);
+            console.log(doc.data().location)
         });
         places.value = p;
     });
