@@ -1,0 +1,22 @@
+{
+  "name": "bejaia-tour-guid",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@kalimahapps/vue-icons": "^1.7.1",
+    "dotenv": "^16.4.5",
+    "firebase": "^10.12.3",
+    "vue": "^3.4.29",
+    "vue-router": "^4.3.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "vite": "^5.3.1"
+  }
+}
