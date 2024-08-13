@@ -86,9 +86,7 @@ onMounted(() => {
 }
 
 .phone-placeHolder .phone-placeImg {
-    /* margin-right: 20px; */
     align-self: center;
-    
 }
 .places .phone-placeHolder .phone-placeImg img {
     width: 99%;
@@ -100,6 +98,7 @@ onMounted(() => {
     font-size: 2rem;
     color: var(--secondaryColor);
     display: flex;
+    flex-direction: column;
     gap: 1rem;
 
 }
@@ -112,8 +111,8 @@ onMounted(() => {
 }
 
 .phone-place-description p {
-    line-height: 2rem;
-    font-size: 1.2rem;
+    line-height: 1.6rem;
+    font-size: 1rem;
     padding-right: 1rem;
     color: var(--mainTextcolor);
 }

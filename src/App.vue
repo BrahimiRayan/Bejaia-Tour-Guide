@@ -81,4 +81,44 @@ header nav ul li{
 }
 
 
+@media (width < 631px) {
+    .link{
+    
+    padding-left: 0px;
+}
+
+header .logo {
+    height: 70px;
+    width: 70px;
+    margin-left: 0;
+}
+
+header nav ul li{
+    /* width: fit-content; */
+    font-size: 0.9rem;
+    margin-left: 1.3rem;
+
+}
+
+header{
+    border-radius: 0px;
+}
+
+}
+
+
+@media(width < 361px){
+    header nav ul li{
+    /* width: fit-content; */
+    font-size: 0.7rem;
+    margin-left: 1rem;
+}
+}
+
+@media (width < 1380px) {
+    header{
+    border-radius: 0px;
+}
+}
+
 </style>

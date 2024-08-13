@@ -121,11 +121,51 @@ onMounted(() => {
 
 .content p {
     width: 90%;
-    margin: 8px auto;
     font-size: 1.2rem;
-    color: var(--mainTextcolor);
-    /* padding: 15px; */
+
 }
 }
 
+@media (width < 426px) {
+    .content p {
+        font-size: 1rem;
+    }
+
+    .content h2 {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media (width < 702px) {
+    #introduction h2 span:nth-child(1){
+        font-size: 1.3rem;        
+    }
+
+    #introduction h2 span:nth-child(2){
+        font-size: 1.3rem;        
+    }
+    #introduction h2 span:nth-child(3){
+        font-size: 1.3rem;        
+    }
+    #introduction h2 span:nth-child(4){
+        font-size: 1.3rem;        
+    }
+}
+
+@media (width < 363px) {
+    #introduction h2 span:nth-child(1){
+        font-size: 1rem;        
+    }
+
+    #introduction h2 span:nth-child(2){
+        font-size: 1rem;        
+    }
+    #introduction h2 span:nth-child(3){
+        font-size: 1rem;        
+    }
+    #introduction h2 span:nth-child(4){
+        font-size: 1rem;        
+    }
+}
 </style>
