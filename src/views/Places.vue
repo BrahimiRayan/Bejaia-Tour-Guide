@@ -111,7 +111,7 @@ onMounted(() => {
 }
 
 .phone-place-description p {
-    line-height: 1.6rem;
+    line-height: 1.6crem;
     font-size: 1rem;
     padding-right: 1rem;
     color: var(--mainTextcolor);
@@ -174,22 +174,6 @@ onMounted(() => {
     border: 1px solid rgb(116, 167, 116);
     border-radius: 8px;
 }
-
-@media (width >= 1024px) {
-    .placeImg img {
-    filter: grayscale(1);
-    transition: filter 600ms ease;
-    }   
-
-    .placeHolder-left:is(:hover , :focus , :focus-within) > .placeImg img {
-        filter: grayscale(0);
-    }
-
-    .placeHolder:is(:hover , :focus , :focus-within) > .placeImg img {
-        filter: grayscale(0);
-    }
-}
-
 
 .place-description h2 {
     font-size: 2.9rem;

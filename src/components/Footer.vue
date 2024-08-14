@@ -3,10 +3,10 @@
         <div class="contact">
             <h1>Contacts</h1>
             <ul>
-                <li><a href=""><IcFacebookTag class="icon"/><p>Facebook</p></a></li>
-                <li><a href=""><SiMinutemailer class="icon"/><p>Email</p></a></li>
-                <li><a href=""><MdOutlinedAddIcCall class="icon"/><p>Telephone</p></a></li>
-                <li><a href=""><AkLinkedinV1Fill class="icon"/><p>Inkdine</p></a></li>
+                <li><a :href="fb"><IcFacebookTag class="icon"/><p>Facebook</p></a></li>
+                <li><a :href="`to:${email}`"><SiMinutemailer class="icon"/><p>Email</p></a></li>
+                <li><a :href="`phone:${phone}`"><MdOutlinedAddIcCall class="icon"/><p>Telephone</p></a></li>
+                <li><a :href="linkdin"><AkLinkedinV1Fill class="icon"/><p>linkedin</p></a></li>
             </ul>
         </div>
 
@@ -45,15 +45,15 @@ import { AkLinkedinV1Fill } from '@kalimahapps/vue-icons';
 import { CoSend } from '@kalimahapps/vue-icons';
 import { ref } from 'vue';
 var email = import.meta.env.VITE_mon_email;
+var fb = import.meta.env.VITE_mon_Fb;
+var linkdin = import.meta.env.VITE_mon_linkdin;
+var phone = import.meta.env.VITE_mon_tlfn;
 
 
 </script>
 
 <style scoped>
 *{color: aliceblue;}
-
-
-
 
 #Wraper{
     margin-top: 20px;

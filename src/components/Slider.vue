@@ -109,7 +109,6 @@
 
 }
 
-
 @media (width < 425px){
     .slider-container{
         height: 330px;
