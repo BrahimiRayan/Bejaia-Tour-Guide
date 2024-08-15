@@ -4,7 +4,7 @@
     </div>
     <div class="content" v-for="histoire in histoires" :key="histoire.id" >
         <h2>{{ histoire.titre }}</h2>
-        <img :src="`src/assets/pics/${histoire.img}.jpg`" :title="histoire.img" alt="" v-if="histoire.img">
+        <img :src="`${histoire.img.toLowerCase()}.jpg`" :title="histoire.img" alt="" v-if="histoire.img">
         <p>{{ histoire.content }}</p>
 
     </div>
