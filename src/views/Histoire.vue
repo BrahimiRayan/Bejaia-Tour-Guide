@@ -32,7 +32,6 @@ onMounted(() => {
                 img: doc.data().img
             };
             p.push(histoireObj);
-            console.log(doc.data().titre +" positioned at " + doc.data().pos)
         });
         histoires.value = p;
     });
