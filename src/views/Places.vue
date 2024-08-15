@@ -10,13 +10,13 @@
                     <p>{{ place.description }}</p>
                 </div>
                 <div class="placeImg">
-                    <img :src="`src/assets/pics/${place.img}.jpg`" :alt="place.nom" :title="place.nom">
+                    <img :src="`public/${place.img}.jpg`" :alt="place.nom" :title="place.nom">
                 </div>
             </div>
 
             <div class="placeHolder" v-if="index % 2 !== 0 && widthOfScreen >= 769">
                 <div class="placeImg">
-                    <img :src="`src/assets/pics/${place.img}.jpg`" :alt="place.nom" :title="place.nom">
+                    <img :src="`public/${place.img}.jpg`" :alt="place.nom" :title="place.nom">
                 </div>
                 <div class="place-description">
                     <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location1"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
@@ -27,7 +27,7 @@
             <!-- Phone version -->
             <div class="phone-placeHolder" v-if="widthOfScreen < 769">
                 <div class="phone-placeImg">
-                    <img :src="`src/assets/pics/${place.img}.jpg`" :alt="place.nom" :title="place.nom">
+                    <img :src="`public/${place.img}.jpg`" :alt="place.nom" :title="place.nom">
                 </div>
                 <div class="phone-place-description">
                     <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
