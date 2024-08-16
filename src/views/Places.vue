@@ -79,7 +79,7 @@ onMounted(() => {
     width: 95%;
     height: max-content;
     padding: 10px;
-    border: 4px solid var(--secondaryColor);
+    border: 3px solid var(--secondaryColor);
     border-radius: 12px;
     margin: 12px auto;
     position :relative;
@@ -95,7 +95,8 @@ onMounted(() => {
 }
 
 .phone-place-description h2 {
-    font-size: 2rem;
+    font-size: 1.4rem;
+    font-weight: 900;
     color: var(--secondaryColor);
     display: flex;
     flex-direction: column;
@@ -131,7 +132,7 @@ onMounted(() => {
     width: 95%;
     height: max-content;
     padding: 10px;
-    border: 4px solid var(--secondaryColor);
+    border: 3px solid var(--secondaryColor);
     border-radius: 12px;
     display: grid;
     grid-template-columns: 45% 55%;
@@ -147,7 +148,7 @@ onMounted(() => {
     width: 95%;
     height: max-content;
     padding: 10px;
-    border: 4px solid var(--secondaryColor);
+    border: 3px solid var(--secondaryColor);
     border-radius: 12px;
     display: grid;
     grid-template-columns: 55% 45%;
@@ -164,6 +165,7 @@ onMounted(() => {
 
 .places .placeHolder-left .placeImg img {
     width: 99%;
+    max-height: 480px;
     border: 1px solid rgb(226, 228, 226);
     border-radius: 8px;
 }
@@ -171,23 +173,25 @@ onMounted(() => {
 
 .places .placeHolder .placeImg img {
     width: 99%;
+    max-height: 480px;
     border: 1px solid rgb(116, 167, 116);
     border-radius: 8px;
 }
 
 .place-description h2 {
-    font-size: 2.9rem;
+    font-size: 1.8rem;
     color: var(--secondaryColor);
     display: flex;
+    font-weight: 900;
     flex-direction: column;
     gap: 8px;
 }
 
 
 .place-description p {
-    margin: 10% auto;
+    margin: 3% auto;
     line-height: 2rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     padding-right: 1rem;
     color: var(--mainTextcolor);
 }

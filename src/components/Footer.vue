@@ -3,10 +3,10 @@
         <div class="contact">
             <h1>Contacts</h1>
             <ul>
-                <li><a :href="fb"><IcFacebookTag class="icon"/><p>Facebook</p></a></li>
-                <li><a :href="`to:${email}`"><SiMinutemailer class="icon"/><p>Email</p></a></li>
-                <li><a :href="`phone:${phone}`"><MdOutlinedAddIcCall class="icon"/><p>Telephone</p></a></li>
-                <li><a :href="linkdin"><AkLinkedinV1Fill class="icon"/><p>linkedin</p></a></li>
+                <li><a :href="fb" target="_blank"><IcFacebookTag class="icon"/><p>Facebook</p></a></li>
+                <li><a :href="`to:${email}`" target="_blank"><SiMinutemailer class="icon"/><p>Email</p></a></li>
+                <li><a :href="`phone:${phone}`" target="_blank"><MdOutlinedAddIcCall class="icon"/><p>Telephone</p></a></li>
+                <li><a :href="linkdin" target="_blank"><AkLinkedinV1Fill class="icon"/><p>linkedin</p></a></li>
             </ul>
         </div>
 

@@ -109,8 +109,6 @@
     }
     .imageHolder img{
         width: 70%;
-        margin-top: 20px;
-        
     }
     .Text{
         /* border: 1px solid lime; */

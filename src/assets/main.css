@@ -51,17 +51,4 @@ main{
     }
 }
 
-.router-link-active{
-    position: relative;
-}
 
-.router-link-active::after{
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgb(210, 143, 8);
-    position: absolute;
-    top: 0;
-    left:100% ;
-}

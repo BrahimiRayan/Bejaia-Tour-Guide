@@ -6,7 +6,7 @@
             <ul>
                 <li><RouterLink class="link" to="/">Places</RouterLink></li>
                 <li><RouterLink class="link" to="/Histoire">Histoire</RouterLink></li>
-                <li><RouterLink class="link" to="/AboutUs">Sur Nous</RouterLink></li>
+                <li><RouterLink class="link" to="/AboutUs">Infos</RouterLink></li>
             </ul>
         </nav>
         
@@ -36,6 +36,14 @@ import Footer from '@/components/Footer.vue'
     text-decoration : none;
     font-weight: 700;
     padding-left: 26px;
+}
+
+.router-link-active{
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+    text-decoration-color: rgb(210, 143, 8);
+    position: relative;
 }
 
 header{
