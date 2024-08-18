@@ -75,7 +75,9 @@ import { BxFacebookCircle } from '@kalimahapps/vue-icons';
     width: 25px;
     height: 25px;
 
-    color: rgb(67, 67, 241);
+    background: #1a56fb;
+    border-radius: 13%;
+    color: #ffffff;
 }
 
 .ami > a >.ami-icn1{
