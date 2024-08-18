@@ -1,8 +1,22 @@
 <template>
     <Slider/>
+
     <section class="places">
+        <div class="filter">
+            <label for="categories">Afficher : </label>
+            <select name="categories" id="categories" @change="handelChange">
+            <option value="tout">Tout</option>
+            <option value="plage">Plages</option>
+            <option value="historique">Historique</option>
+            <option value="ville">Villes | régions</option>
+            <option value="cascade">Cascades</option>
+            <option value="nature">Nature</option>
+        </select>
+        
+        </div>
         <div v-if="places.length !== 0" v-for="(place, index) in places" :key="index">
-  
+
+            <span v-if="categorie === 'tout'">
             <!-- Tablet & Pc version -->
             <div class="placeHolder-left" v-if="index % 2 === 0 && widthOfScreen >= 769">
                 <div class="place-description">
@@ -34,7 +48,32 @@
                     <p>{{ place.description }}</p>
                 </div>
             </div>
+        </span>
+
+        <span v-else>
+            <div class="placeHolder" v-if="place.categorie === categorie && widthOfScreen >= 769">
+                <div class="placeImg">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom">
+                </div>
+                <div class="place-description">
+                    <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location1"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
+                    <p>{{ place.description }}</p>
+                </div>
+            </div>
+
+             <!-- Phone version -->
+             <div class="phone-placeHolder" v-if="place.categorie === categorie && widthOfScreen < 769">
+                <div class="phone-placeImg">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom">
+                </div>
+                <div class="phone-place-description">
+                    <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
+                    <p>{{ place.description }}</p>
+                </div>
+            </div>
+        </span>
         </div>
+
     </section>
 </template>
 
@@ -50,8 +89,12 @@ window.addEventListener('resize',()=>{
 })
 
 const places = ref([]);
+const categorie = ref('tout');
+const handelChange = (e)=>{
+    categorie.value = e.target.value
+    
+}
 
-// Function to get the correct image URL
 
 
 
@@ -65,6 +108,7 @@ onMounted(() => {
                 description: doc.data().description,
                 img: doc.data().img,  // Image name from Firestore
                 location: doc.data().location,
+                categorie : doc.data().categorie
             };
             p.push(place);
         });
@@ -112,7 +156,7 @@ onMounted(() => {
 }
 
 .phone-place-description p {
-    line-height: 1.6crem;
+    line-height: 1.6rem;
     font-size: 1rem;
     padding-right: 1rem;
     color: var(--mainTextcolor);
@@ -126,6 +170,35 @@ onMounted(() => {
 
 .places {
     margin-bottom: 30px;
+}
+.filter{
+    margin-left: 2.5%;
+}
+
+.filter label{
+    color: var(--mainTextcolor);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+#categories{
+    /* margin-left: 2.5%; */
+    background: var(--mainColor);
+    color: var(--mainTextcolor);
+    border: 2px solid var(--secondaryColor);
+    font-size: 1.1rem;
+    border-radius: 10px;
+    height: 2.3rem;
+    width: max-content;
+    text-indent: 3px;
+    transition: border 300ms ease;
+    outline: none;
+}
+
+@media (width < 768px) {
+    #categories{
+        font-size: 0.9rem;
+    }
 }
 
 .places .placeHolder-left {
