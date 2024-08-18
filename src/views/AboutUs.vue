@@ -31,7 +31,12 @@
 
         <div class="remerciment">
             <h2>Remerciements Spéciaux</h2>
-            <p>Je tiens à exprimer ma gratitude à mon ami <a href="https://www.instagram.com/salah_meradi/">MERADI Salah</a> pour m'avoir fourni certaines des magnifiques images que vous voyez sur ce site. Son soutien a été précieux pour rendre Bejaia Tour Guide encore plus visuellement attrayant.</p>
+            <p>Je souhaite exprimer ma profonde gratitude à mes amis <a href="https://www.instagram.com/salah_meradi/">MERADI Salah</a> et <a href="https://www.facebook.com/mouhamed.yedjed">Mohamed Ydjedd</a> pour leur précieuse contribution de certaines des magnifiques images présentées sur ce site. Leur soutien a été essentiel pour rendre Bejaia Tour Guide encore plus visuellement attrayant.</p>
+            <div class="contactAmis">
+                <div class="ami"><a href="https://www.instagram.com/salah_meradi/"><AnOutlinedInstagram class="ami-icn1"/>MERADI Salah</a></div>
+                <div class="ami"><a href="https://www.facebook.com/mouhamed.yedjed"><BxFacebookCircle class="ami-icn2"/> Mohamed Ydjedd</a></div>
+                
+            </div>
         </div>
 
         <div class="RDA">
@@ -41,12 +46,49 @@
     </div>
 </template>
 
+<script setup>
+import { AnOutlinedInstagram } from '@kalimahapps/vue-icons';
+import { BxFacebookCircle } from '@kalimahapps/vue-icons';
+</script>
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap');
 *{
     font-family: Signika ,'Poppins', sans-serif;;
 }
 
+.contactAmis{
+    margin-top: 1rem;
+    width: max-content;
+
+}
+
+.ami > a{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    color: aliceblue;
+    text-decoration: none;
+}
+.ami > a >.ami-icn2{
+    margin-right: 1rem;
+    width: 25px;
+    height: 25px;
+
+    color: rgb(67, 67, 241);
+}
+
+.ami > a >.ami-icn1{
+    margin-right: 1rem;
+    width: 25px;
+    height: 25px;
+    border-radius: 30%;
+    background: #833ab4;
+    background: linear-gradient(
+    to right,
+    #833ab4,#fd1d1d,#fcb045
+  );
+}
 .remerciment{
     width: 90%;
     margin: 1rem auto;
