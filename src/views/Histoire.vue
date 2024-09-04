@@ -2,19 +2,35 @@
     <div id="introduction">
         <h2><span>Béjaïa</span> | <span>ⴱⴳⴰⵢⵝ</span> | <span>Bgayet</span> | <span>بجاية</span> </h2>
     </div>
-    <div class="content" v-for="histoire in histoires" :key="histoire.id" >
+    <div class="content" v-for="(histoire , index) in histoires" :key="histoire.id" >
         <h2>{{ histoire.titre }}</h2>
-        <img :src="`${histoire.img.toLowerCase()}.jpg`" :title="histoire.img" alt="" v-if="histoire.img">
+        <img :src="`${histoire.img.toLowerCase()}.jpg`" :title="histoire.img" alt="" v-if="histoire.img" @click="openImage(index)">
         <p>{{ histoire.content }}</p>
-
+        <ImageResizer 
+            v-if="histoire.isOpen"
+            :isVisible="histoire.isOpen" 
+            :imgsrc="`${histoire.img.toLowerCase()}.jpg`"
+            @close="closeImage(index)" 
+        />
     </div>
 
 </template>
 
 <script setup>
 import { onSnapshot, collection , query , orderBy  } from 'firebase/firestore';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { db } from '@/Firebase/firebase.js';
+import ImageResizer from '@/components/imageResizer.vue';
+
+const openImage = (index) => {
+    histoires.value[index].isOpen = true;
+    document.body.style.overflow = 'hidden'; 
+};
+
+const closeImage = (index) => {
+    histoires.value[index].isOpen = false;
+    document.body.style.overflow = 'auto'; 
+};
 
 const histoires = ref([]);
 const HistoireColectionRef = collection(db , 'histoire')
@@ -29,7 +45,8 @@ onMounted(() => {
                 id: doc.id,
                 titre: doc.data().titre,
                 content: doc.data().content,
-                img: doc.data().img
+                img: doc.data().img,
+                isOpen : false
             };
             p.push(histoireObj);
         });
@@ -37,10 +54,18 @@ onMounted(() => {
     });
 });
 
+
+watch(histoires, (newImages) => {
+  const anyImageVisible = newImages.some((image) => image.isOpen);
+  if (!anyImageVisible) {
+    document.body.style.overflow = 'auto'; 
+  }
+});
 </script>
 
 
 <style scoped>
+
 #introduction {
     margin: 1rem auto;
     width: fit-content;
@@ -88,6 +113,7 @@ onMounted(() => {
     border-radius: 20px;
     padding: 10px;
     overflow: hidden;
+    position: relative;
 }
 
 .content h2 {

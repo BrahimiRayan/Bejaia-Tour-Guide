@@ -24,52 +24,87 @@
                     <p>{{ place.description }}</p>
                 </div>
                 <div class="placeImg">
-                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)">
+                    <FlArrowExpand class="expandIcon" @click="openImage(index)"/>
                 </div>
+                <ImageResizer 
+                    v-if="place.isOpen"
+                    :isVisible="place.isOpen" 
+                    :imgsrc="`${place.img.toLowerCase()}.jpg`"
+                    @close="closeImage(index)" 
+                />
             </div>
 
             <div class="placeHolder" v-if="index % 2 !== 0 && widthOfScreen >= 769">
                 <div class="placeImg">
-                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)">
+                    <FlArrowExpand class="expandIcon" @click="openImage(index)"/>
                 </div>
                 <div class="place-description">
                     <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location1"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
                 </div>
+                <ImageResizer 
+                    v-if="place.isOpen"
+                    :isVisible="place.isOpen" 
+                    :imgsrc="`${place.img.toLowerCase()}.jpg`"
+                    @close="closeImage(index)" 
+                />
             </div>
 
             <!-- Phone version -->
             <div class="phone-placeHolder" v-if="widthOfScreen < 769">
                 <div class="phone-placeImg">
-                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)">
+                    <FlArrowExpand class="expandIcon" @click="openImage(index)"/>
                 </div>
                 <div class="phone-place-description">
                     <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
                 </div>
+                <ImageResizer 
+                    v-if="place.isOpen"
+                    :isVisible="place.isOpen" 
+                    :imgsrc="`${place.img.toLowerCase()}.jpg`"
+                    @close="closeImage(index)" 
+                />
             </div>
         </span>
 
         <span v-else>
             <div class="placeHolder" v-if="place.categorie === categorie && widthOfScreen >= 769">
                 <div class="placeImg">
-                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)">
+                    <FlArrowExpand class="expandIcon" @click="openImage(index)"/>
                 </div>
                 <div class="place-description">
                     <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location1"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
                 </div>
+                <ImageResizer 
+                    v-if="place.isOpen"
+                    :isVisible="place.isOpen" 
+                    :imgsrc="`${place.img.toLowerCase()}.jpg`"
+                    @close="closeImage(index)" 
+                />
             </div>
 
              <!-- Phone version -->
              <div class="phone-placeHolder" v-if="place.categorie === categorie && widthOfScreen < 769">
                 <div class="phone-placeImg">
-                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)">
+                    <FlArrowExpand class="expandIcon" @click="openImage(index)"/>
                 </div>
                 <div class="phone-place-description">
                     <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
                 </div>
+                <ImageResizer 
+                    v-if="place.isOpen"
+                    :isVisible="place.isOpen" 
+                    :imgsrc="`${place.img.toLowerCase()}.jpg`"
+                    @close="closeImage(index)" 
+                />
             </div>
         </span>
         </div>
@@ -78,26 +113,38 @@
 </template>
 
 <script setup>
-import { LaMapMarkedAltSolid } from '@kalimahapps/vue-icons';
+import { LaMapMarkedAltSolid ,FlArrowExpand} from '@kalimahapps/vue-icons';
 import Slider from '@/components/Slider.vue'
 import { db } from '@/Firebase/firebase.js';
 import { onSnapshot, collection } from 'firebase/firestore';
-import { onMounted, ref } from 'vue';
+import ImageResizer from '@/components/imageResizer.vue';
+import { onMounted, ref, watch } from 'vue';
+// watch the width of the screen for the mobile version :)
 const widthOfScreen = ref(window.innerWidth);
 window.addEventListener('resize',()=>{
     widthOfScreen.value = window.innerWidth;
 })
 
+// this is watching the selection by the user...
 const places = ref([]);
 const categorie = ref('tout');
 const handelChange = (e)=>{
     categorie.value = e.target.value
-    
 }
 
+// the functionalitty of opening and closing the images ... 
 
+const openImage = (index) => {
+    places.value[index].isOpen = true;
+    document.body.style.overflow = 'hidden'; 
+};
 
+const closeImage = (index) => {
+    places.value[index].isOpen = false;
+    document.body.style.overflow = 'auto'; 
+};
 
+// fetching the data
 onMounted(() => {
     onSnapshot(collection(db, 'places'), (querySnapshot) => {
         const p = [];
@@ -108,12 +155,20 @@ onMounted(() => {
                 description: doc.data().description,
                 img: doc.data().img,  // Image name from Firestore
                 location: doc.data().location,
-                categorie : doc.data().categorie
+                categorie : doc.data().categorie,
+                isOpen : false,
             };
             p.push(place);
         });
         places.value = p;
     });
+});
+
+watch(places, (newImages) => {
+  const anyImageVisible = newImages.some((placeimg) => placeimg.isOpen);
+  if (!anyImageVisible) {
+    document.body.style.overflow = 'auto'; 
+  }
 });
 </script>
 
@@ -131,8 +186,10 @@ onMounted(() => {
 
 .phone-placeHolder .phone-placeImg {
     align-self: center;
+    position: relative;
 }
 .places .phone-placeHolder .phone-placeImg img {
+    cursor: pointer;
     width: 99%;
     border: 1px solid rgb(226, 228, 226);
     border-radius: 8px;
@@ -165,7 +222,6 @@ onMounted(() => {
 .Mapicon{
     height: 30px;
     width: 30px;
-    
 }
 
 .places {
@@ -213,10 +269,16 @@ onMounted(() => {
     position :relative;
 }
 .places .placeHolder-left .placeImg {
-    
+    position: relative;
     align-self: center;
 }
-
+.expandIcon{
+    background-color: rgba(0, 0, 0, 0.425);
+    color: aliceblue;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
 .places .placeHolder {
     width: 95%;
     height: max-content;
@@ -233,21 +295,23 @@ onMounted(() => {
 .places .placeHolder .placeImg {
     margin-right: 20px;
     align-self: center;
-    
+    position: relative;
 }
 
 .places .placeHolder-left .placeImg img {
+    cursor: pointer;
     width: 99%;
     max-height: 480px;
-    border: 1px solid rgb(226, 228, 226);
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 8px;
 }
 
 
 .places .placeHolder .placeImg img {
+    cursor: pointer;
     width: 99%;
     max-height: 480px;
-    border: 1px solid rgb(116, 167, 116);
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 8px;
 }
 
