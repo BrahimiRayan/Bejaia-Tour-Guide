@@ -2,7 +2,7 @@
     <Slider/>
 
     <section class="places">
-        <div class="filter">
+        <!-- <div class="filter">
             <label for="categories">Afficher : </label>
             <select name="categories" id="categories" @change="handelChange">
             <option value="tout">Tout</option>
@@ -13,6 +13,10 @@
             <option value="nature">Nature</option>
         </select>
         
+        </div> -->
+        <div class="filter">
+            <h3>Afficher : </h3>
+            <NavigationButtons @term="recivedterm"/>
         </div>
         <div v-if="places.length !== 0" v-for="(place, index) in places" :key="index">
 
@@ -114,7 +118,8 @@
 
 <script setup>
 import { LaMapMarkedAltSolid ,FlArrowExpand} from '@kalimahapps/vue-icons';
-import Slider from '@/components/Slider.vue'
+import Slider from '@/components/Slider.vue';
+import NavigationButtons from '@/components/NavigationButtons.vue';
 import { db } from '@/Firebase/firebase.js';
 import { onSnapshot, collection } from 'firebase/firestore';
 import ImageResizer from '@/components/imageResizer.vue';
@@ -128,8 +133,12 @@ window.addEventListener('resize',()=>{
 // this is watching the selection by the user...
 const places = ref([]);
 const categorie = ref('tout');
-const handelChange = (e)=>{
-    categorie.value = e.target.value
+// const handelChange = (e)=>{
+//     categorie.value = e.target.value
+// }
+
+const recivedterm = (value)=>{
+    categorie.value = value;
 }
 
 // the functionalitty of opening and closing the images ... 
@@ -228,11 +237,13 @@ watch(places, (newImages) => {
     margin-bottom: 30px;
 }
 .filter{
-    margin-left: 2.5%;
+    
+    margin-left: 2.9%;
 }
 
-.filter label{
+.filter h3{
     color: var(--mainTextcolor);
+    margin-bottom: .8rem;
     font-weight: 700;
     font-size: 1.1rem;
 }
