@@ -27,13 +27,18 @@
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
-                <li><RouterLink class="links" to="/">Places</RouterLink></li>
-                <li><RouterLink class="links" to="/Histoire">Histoire</RouterLink></li>
-                <li><RouterLink class="links" to="/AboutUs">Sur Nous</RouterLink></li>
+                <li><RouterLink class="links" :to="{name : 'places'}">Places</RouterLink></li>
+                <li><RouterLink class="links" :to="{name : 'histoire'}">Histoire</RouterLink></li>
+                <li><RouterLink class="links" :to="{name : 'about'}">Sur Nous</RouterLink></li>
             </ul>
 
-            <a href="#" class="menu-nav"><div class="logo"></div></a>
+            <RouterLink to="/" class="menu-nav"><div class="logo"></div></RouterLink>
         </div>
+    </div>
+
+    <div class="licence">
+        <p>Released under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer"> MIT License</a></p>
+        <p>&copy; 2024 Bejaia Tour Guide. All rights reserved.</p>
     </div>
 </template>
 
@@ -43,7 +48,6 @@ import { SiMinutemailer } from '@kalimahapps/vue-icons';
 import { MdOutlinedAddIcCall } from '@kalimahapps/vue-icons';
 import { AkLinkedinV1Fill } from '@kalimahapps/vue-icons';
 import { CoSend } from '@kalimahapps/vue-icons';
-import { ref } from 'vue';
 var email = import.meta.env.VITE_mon_email;
 var fb = import.meta.env.VITE_mon_Fb;
 var linkdin = import.meta.env.VITE_mon_linkdin;
@@ -53,10 +57,20 @@ var phone = import.meta.env.VITE_mon_tlfn;
 </script>
 
 <style scoped>
+
 *{color: aliceblue;}
+.licence{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: .8rem;
+    padding: 1rem;
+}
+
 
 #Wraper{
-    margin-top: 20px;
+    margin-top: 6px;
     background: var(--mainColor);
     display: grid;
     padding: 1.5rem 1rem;
@@ -172,7 +186,6 @@ var phone = import.meta.env.VITE_mon_tlfn;
 
 @media (width < 768px) {
     #Wraper{
-    margin-top: 20px;
     background: var(--mainColor);
     display: grid;
     padding: 1.5rem 1rem;

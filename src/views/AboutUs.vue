@@ -3,7 +3,7 @@
         <div class="me">
             <div class="Text">
                 <h1>BRAHIMI Rayan</h1>
-                <p>Bienvenue sur Bejaia Tour Guide ! Je m'appelle BRAHIMI Rayan, un étudiant en informatique passionné par ma ville, Bejaia. Ce site est né de mon désir de partager la beauté et la richesse culturelle de notre région avec le monde entier.</p>
+                <p>Bienvenue sur Bejaia Tour Guide <span class="New" title="Des modifications ont été apportées à cette application web par rapport à la version 1.0. Désormais, vous pouvez créer un compte, aimer des contenus, sauvegarder des lieux que vous souhaitez visiter à l'avenir, ajouter vos avis sur ces lieux, ainsi que profiter d'optimisations pour améliorer la facilité et la rapidité d'utilisation. Soyez les bienvenus sur BEJAIA TOUR GUID ! ">V2.0</span>! Je m'appelle BRAHIMI Rayan, un étudiant en informatique passionné par ma ville, Bejaia. Ce site est né de mon désir de partager la beauté et la richesse culturelle de notre région avec le monde entier.</p>
             </div>
             <div class="imageHolder">
                 <img src="@/assets/pics/Brahimi_Rayan.png" alt="">
@@ -21,7 +21,7 @@
             </div>
             <div>
                 <h2>Ce que vous trouverez ici</h2>
-                <p>Sur Bejaia Tour Guide, vous trouverez une sélection de lieux touristiques de notre ville, chacun accompagné d'une photo, d'une description détaillée, et de sa localisation sur la carte. Le site propose également une section dédiée à l'histoire de Bejaia. Mon objectif est de vous offrir un guide simple et pratique pour explorer notre magnifique ville et en découvrir tous les secrets.</p>
+                <p>Sur Bejaia Tour Guide, vous trouverez une sélection de lieux touristiques de notre ville, chacun accompagné d'une photo, d'une description détaillée, ainsi que de sa localisation sur la carte. Le site propose également une section dédiée à l'histoire de Bejaia. En plus de cela, la version V2.0 vous permet désormais de créer un compte, d'aimer des contenus, de sauvegarder des lieux que vous souhaitez visiter à l'avenir, et d'ajouter vos avis sur ces lieux. De nombreuses optimisations ont également été mises en place pour améliorer la facilité et la rapidité d'utilisation. Mon objectif reste le même : vous offrir un guide simple et pratique pour explorer notre magnifique ville et en découvrir tous les secrets.</p>
             </div>
             <div>
                 <h2>Contactez-moi</h2>
@@ -55,6 +55,14 @@ import { BxFacebookCircle } from '@kalimahapps/vue-icons';
 @import url('https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap');
 *{
     font-family: Signika ,'Poppins', sans-serif;;
+}
+
+.New{
+    background-color: rgb(197, 33, 33);
+    padding: 2px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .contactAmis{

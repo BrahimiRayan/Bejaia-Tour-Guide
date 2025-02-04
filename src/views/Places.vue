@@ -1,19 +1,8 @@
 <template>
+<div v-if="places">
     <Slider/>
 
     <section class="places">
-        <!-- <div class="filter">
-            <label for="categories">Afficher : </label>
-            <select name="categories" id="categories" @change="handelChange">
-            <option value="tout">Tout</option>
-            <option value="plage">Plages</option>
-            <option value="historique">Historique</option>
-            <option value="ville">Villes | régions</option>
-            <option value="cascade">Cascades</option>
-            <option value="nature">Nature</option>
-        </select>
-        
-        </div> -->
         <div class="filter">
             <h3>Afficher : </h3>
             <NavigationButtons @term="recivedterm"/>
@@ -24,11 +13,11 @@
             <!-- Tablet & Pc version -->
             <div class="placeHolder-left" v-if="index % 2 === 0 && widthOfScreen >= 769">
                 <div class="place-description">
-                    <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location1"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
+                    <h2><RouterLink class="post-name" :to="{name : 'place' , params : { id : place.id}}">{{ place.nom }} <img src="@/assets/pics/click.svg" alt="" loading="lazy"></RouterLink> <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location1"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
                 </div>
                 <div class="placeImg">
-                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)" loading="lazy">
                     <FlArrowExpand class="expandIcon" @click="openImage(index)"/>
                 </div>
                 <ImageResizer 
@@ -37,15 +26,16 @@
                     :imgsrc="`${place.img.toLowerCase()}.jpg`"
                     @close="closeImage(index)" 
                 />
+                <PostSocial :postID="place.id"/>
             </div>
 
             <div class="placeHolder" v-if="index % 2 !== 0 && widthOfScreen >= 769">
                 <div class="placeImg">
-                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)" loading="lazy">
                     <FlArrowExpand class="expandIcon" @click="openImage(index)"/>
                 </div>
                 <div class="place-description">
-                    <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location1"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
+                    <h2><RouterLink class="post-name" :to="{name : 'place' , params : { id : place.id}}">{{ place.nom }} <img src="@/assets/pics/click.svg" alt="" loading="lazy"></RouterLink> <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location1"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
                 </div>
                 <ImageResizer 
@@ -54,16 +44,17 @@
                     :imgsrc="`${place.img.toLowerCase()}.jpg`"
                     @close="closeImage(index)" 
                 />
+                <PostSocial :postID="place.id"/>
             </div>
 
             <!-- Phone version -->
             <div class="phone-placeHolder" v-if="widthOfScreen < 769">
                 <div class="phone-placeImg">
-                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)" loading="lazy">
                     <FlArrowExpand class="expandIcon" @click="openImage(index)"/>
                 </div>
                 <div class="phone-place-description">
-                    <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
+                    <h2><RouterLink class="post-name" :to="{name : 'place' , params : { id : place.id}}">{{ place.nom }} <img src="@/assets/pics/click.svg" alt="" loading="lazy"></RouterLink> <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
                 </div>
                 <ImageResizer 
@@ -72,17 +63,18 @@
                     :imgsrc="`${place.img.toLowerCase()}.jpg`"
                     @close="closeImage(index)" 
                 />
+                <PostSocial :postID="place.id"/>
             </div>
         </span>
 
         <span v-else>
             <div class="placeHolder" v-if="place.categorie === categorie && widthOfScreen >= 769">
                 <div class="placeImg">
-                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)" loading="lazy">
                     <FlArrowExpand class="expandIcon" @click="openImage(index)"/>
                 </div>
                 <div class="place-description">
-                    <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location1"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
+                    <h2><RouterLink class="post-name" :to="{name : 'place' , params : { id : place.id}}">{{ place.nom }} <img src="@/assets/pics/click.svg" alt="" loading="lazy"></RouterLink>  <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location1"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
                 </div>
                 <ImageResizer 
@@ -91,16 +83,17 @@
                     :imgsrc="`${place.img.toLowerCase()}.jpg`"
                     @close="closeImage(index)" 
                 />
+                <PostSocial :postID="place.id"/>
             </div>
 
              <!-- Phone version -->
              <div class="phone-placeHolder" v-if="place.categorie === categorie && widthOfScreen < 769">
                 <div class="phone-placeImg">
-                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)">
+                    <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom" @click="openImage(index)" loading="lazy">
                     <FlArrowExpand class="expandIcon" @click="openImage(index)"/>
                 </div>
                 <div class="phone-place-description">
-                    <h2>{{ place.nom }} <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
+                    <h2><RouterLink class="post-name" :to="{name : 'place' , params : { id : place.id}}">{{ place.nom }} <img src="@/assets/pics/click.svg" alt="" loading="lazy"> </RouterLink> <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
                 </div>
                 <ImageResizer 
@@ -109,11 +102,21 @@
                     :imgsrc="`${place.img.toLowerCase()}.jpg`"
                     @close="closeImage(index)" 
                 />
+                <PostSocial :postID="place.id"/>
             </div>
+            
         </span>
+
         </div>
 
+        <div v-else id="loading-screen">
+            <img src="../../spinner.gif" alt="">
+            <h2>Chargement en cours...</h2>
+        </div>
+
+
     </section>
+</div>
 </template>
 
 <script setup>
@@ -124,6 +127,8 @@ import { db } from '@/Firebase/firebase.js';
 import { onSnapshot, collection } from 'firebase/firestore';
 import ImageResizer from '@/components/imageResizer.vue';
 import { onMounted, ref, watch } from 'vue';
+import { RouterLink} from 'vue-router';
+import PostSocial from '@/components/PostSocial.vue';
 // watch the width of the screen for the mobile version :)
 const widthOfScreen = ref(window.innerWidth);
 window.addEventListener('resize',()=>{
@@ -133,9 +138,6 @@ window.addEventListener('resize',()=>{
 // this is watching the selection by the user...
 const places = ref([]);
 const categorie = ref('tout');
-// const handelChange = (e)=>{
-//     categorie.value = e.target.value
-// }
 
 const recivedterm = (value)=>{
     categorie.value = value;
@@ -179,9 +181,33 @@ watch(places, (newImages) => {
     document.body.style.overflow = 'auto'; 
   }
 });
+
 </script>
 
 <style scoped>
+      #loading-screen {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          background: #2B3332;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 20px;
+          font-weight: bold;
+      }
+      #loading-screen img{
+        margin-top: 45%;
+        width: 5rem;
+        height: 5rem;
+      }
+      #loading-screen h2{
+        color: #009afa;
+        margin-top: 1rem;
+      }
 /* VS , S ,L< SCREENS */
 .phone-placeHolder{
     width: 95%;
@@ -207,14 +233,17 @@ watch(places, (newImages) => {
 .phone-place-description h2 {
     font-size: 1.4rem;
     font-weight: 900;
-    color: var(--secondaryColor);
     display: flex;
     flex-direction: column;
     gap: 1rem;
-
+    
 }
-
+.phone-place-description h2 >.post-name{
+    text-decoration: none;
+    color: var(--secondaryColor);
+} 
 .phone-place-description h2 .location {
+    width: fit-content;
     border-radius: 5px;
     overflow: hidden;
     text-decoration: none;
@@ -328,14 +357,19 @@ watch(places, (newImages) => {
 
 .place-description h2 {
     font-size: 1.8rem;
-    color: var(--secondaryColor);
     display: flex;
     font-weight: 900;
     flex-direction: column;
     gap: 8px;
 }
-
-
+.place-description h2 >.post-name{
+    text-decoration: none;
+    color: var(--secondaryColor);
+} 
+.post-name img{
+    width: 1.4rem;
+    height: 1.4rem;
+}
 .place-description p {
     margin: 3% auto;
     line-height: 2rem;

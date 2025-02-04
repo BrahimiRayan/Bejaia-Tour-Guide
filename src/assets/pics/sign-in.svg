@@ -1,0 +1,18 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="sign-in-double-arrow" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color">
+
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
+
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+
+<g id="SVGRepo_iconCarrier">
+
+<path id="secondary" d="M10.71,14.29a1,1,0,0,1,0,1.42,1,1,0,0,1-1.42,0l-3-3a1,1,0,0,1,0-1.42l3-3a1,1,0,0,1,1.42,1.42L8.41,12ZM21,11H14.41l1.3-1.29a1,1,0,0,0-1.42-1.42l-3,3a1,1,0,0,0,0,1.42l3,3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L14.41,13H21a1,1,0,0,0,0-2Z" style="fill: #2ca9bc;"/>
+
+<path id="primary" d="M13,22H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2h9a2,2,0,0,1,2,2V5a1,1,0,0,1-2,0V4H4V20h9V19a1,1,0,0,1,2,0v1A2,2,0,0,1,13,22Z" style="fill: #2ca9bc;"/>
+
+</g>
+
+</svg>

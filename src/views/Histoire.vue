@@ -4,7 +4,7 @@
     </div>
     <div class="content" v-for="(histoire , index) in histoires" :key="histoire.id" >
         <h2>{{ histoire.titre }}</h2>
-        <img :src="`${histoire.img.toLowerCase()}.jpg`" :title="histoire.img" alt="" v-if="histoire.img" @click="openImage(index)">
+        <img :src="`${histoire.img.toLowerCase()}.jpg`" :title="histoire.img" alt="" v-if="histoire.img" @click="openImage(index)" loading="lazy">
         <p>{{ histoire.content }}</p>
         <ImageResizer 
             v-if="histoire.isOpen"
@@ -13,7 +13,6 @@
             @close="closeImage(index)" 
         />
     </div>
-
 </template>
 
 <script setup>

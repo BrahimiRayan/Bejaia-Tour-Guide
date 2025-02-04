@@ -1,14 +1,11 @@
 <template>
-<!-- <h1>{{ props.isOpen }}</h1> -->
-<h2>{{ props.imgsrc }}</h2>
 <div id="fullImageContainer">
     <button id="closeButton" @click="closeImage">X</button>
-    <img :src="props.imgsrc" alt="Full Size Image" >
+    <img :src="props.imgsrc" alt="Full Size Image" loading="lazy">
 </div>
 </template>
 
 <script setup>
-import { ref, defineEmits } from 'vue';
 const props = defineProps({
     isVisible : Boolean,
     imgsrc : String,
@@ -30,7 +27,7 @@ const closeImage = () => {
   height: 100%;
   background: rgba(0, 0, 0, 0.726);
     
-    backdrop-filter: blur( 3px );
+  backdrop-filter: blur( 3px );
 -webkit-backdrop-filter: blur( 3px );
   display: flex;
   justify-content: center;
