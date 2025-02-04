@@ -200,7 +200,7 @@ onMounted (async ()=>{
         padding-top: 4rem;
     } 
 
-    @media (width < 391px) {
+    @media (width < 426px) {
         .comForm{
         grid-template-columns: 1fr;
         align-items: center;

@@ -18,7 +18,7 @@
             </button>
             
             <button class="action" @click="IsSaved">
-                <Transition name="fade" mode="out-in">
+                <Transition name="save" mode="out-in">
                     <img v-if="saved" src="@/assets/pics/socials/save-active.svg" alt="">
                     <img v-else src="@/assets/pics/socials/save-no-active.svg" alt="">
                 </Transition>
@@ -29,11 +29,19 @@
 
 <style scoped>
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s ease-in-out , scale 400ms ease-in-out;
+  transition: transform 500ms ease-in-out;
 }
 .fade-enter-from, .fade-leave-to {
-  opacity: 0;
-  scale: 1.2;
+  /* opacity: 0; */
+  transform: scale(2);
+}
+
+.save-enter-active, .save-leave-active {
+  transition: transform 200ms ease-in-out;
+}
+.save-enter-from, .save-leave-to {
+
+  transform: scale(0.8);
 }
 
 .container{
@@ -41,12 +49,12 @@
     align-items: center;
     justify-content: space-around;
     margin-top: 1rem;
-    border-top: 1px solid rgb(92, 91, 91);
+    border-top: 1px solid #5c5b5b;
 }
 
     .action img{
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             transition: transform 300ms ease-in-out;
         }
 
@@ -79,6 +87,21 @@
         margin-left: .5rem;
     }
 
+    .comment img {
+        width: 24px;
+        height: 24px;
+    }
+    @media (width <430px) {
+        .action img{
+            width: 25px;
+            height: 25px;
+            transition: transform 500ms ease-in-out;
+        }
+        .comment img {
+        width: 19px;
+        height: 19px;
+    }
+    }
     @media (width<370px) {
         .action span{
             display: none;

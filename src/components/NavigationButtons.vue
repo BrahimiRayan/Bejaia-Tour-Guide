@@ -47,7 +47,7 @@
 </style>
 
 <script setup>
-import { defineEmits, ref } from 'vue';
+import {ref } from 'vue';
 import { FlBeach ,CaAlignHorizontalLeft ,MaHistoric,MaTown ,MaWaterfall ,MdOutlinedForest} from '@kalimahapps/vue-icons';
 
 

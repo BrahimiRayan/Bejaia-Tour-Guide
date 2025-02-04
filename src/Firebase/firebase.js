@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider ,onAuthStateChanged , signInWithPopup, signOut} from "firebase/auth"
 const firebaseConfig = {
-  apiKey: "AIzaSyClMosCrYdKnKzSdsw4AvChA_RX205OI0o",
+  apiKey: import.meta.env.VITE_apiKey ,
   authDomain: "bejaia-tour-guide.firebaseapp.com",
   projectId: "bejaia-tour-guide",
   storageBucket: "bejaia-tour-guide.firebasestorage.app",
@@ -10,6 +10,7 @@ const firebaseConfig = {
   appId: "1:961077622912:web:9a5cfab0070044ac224e65"
 };
 
+console.log(firebaseConfig);
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // fire store functionalities 

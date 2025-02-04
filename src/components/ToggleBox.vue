@@ -25,7 +25,7 @@ import { ref, onMounted, onUnmounted, watchEffect } from "vue";
 // import { defineEmits } from "vue";
 
 // DISTRUCTURING
-const { logOut , signIn ,isAuthed , name , img} = useAuth() ;
+const { logOut , signIn ,isAuthed , name } = useAuth() ;
 
 // Front-end props
 const props = defineProps({

@@ -311,7 +311,7 @@ setTimeout(()=>{
             font-size: 3rem;
         }
         .place-description{
-            width: 98%;
+            width: 96%;
             font-size: 1.2rem;
         }
         .place-img{
@@ -334,7 +334,7 @@ setTimeout(()=>{
             width: 3rem;
         }
         .comments-section{
-        width: 98%;
+        width: 96%;
       }
     }   
 

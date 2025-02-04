@@ -7,7 +7,7 @@
                 <h2>{{ isAuthed.displayName }}</h2>
             </div>
             <div class="user-cred">
-                <div><h3>Votre Email</h3> <p> : {{ isAuthed.email }}</p></div>
+                <div><h3>Votre Email</h3> <p> : {{ isAuthed.email.slice(0,18) +'...' }}</p></div>
                 <div><h3>Vous avez aimés</h3> <p> : {{ liked.length }} posts</p></div>
                 <div><h3>Vous avez dans le panier</h3> <p> : {{ saved.length }} posts</p></div>
             </div>
@@ -294,7 +294,7 @@ import { isAuthed } from '@/composables/LogicAuth';
 import { RouterLink } from 'vue-router';
 import { img } from '@/composables/LogicAuth';
 import useLike from '@/composables/useLikesManagement';
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch, watchEffect } from 'vue';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '@/Firebase/firebase';
 import router from '@/router';
