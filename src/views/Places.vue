@@ -56,6 +56,7 @@
                 <div class="phone-place-description">
                     <h2><RouterLink class="post-name" :to="{name : 'place' , params : { id : place.id}}">{{ place.nom }} <img src="@/assets/pics/click.svg" alt="" loading="lazy"></RouterLink> <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
+                    <RouterLink class="read-more" :to="{name : 'place' , params : { id : place.id}}"> Lire plus</RouterLink> 
                 </div>
                 <ImageResizer 
                     v-if="place.isOpen"
@@ -95,6 +96,7 @@
                 <div class="phone-place-description">
                     <h2><RouterLink class="post-name" :to="{name : 'place' , params : { id : place.id}}">{{ place.nom }} <img src="@/assets/pics/click.svg" alt="" loading="lazy"> </RouterLink> <a :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`" target="_blank" class="location"><LaMapMarkedAltSolid class="Mapicon"/></a></h2>                    
                     <p>{{ place.description }}</p>
+                    <RouterLink class="read-more" :to="{name : 'place' , params : { id : place.id}}"> Lire plus</RouterLink> 
                 </div>
                 <ImageResizer 
                     v-if="place.isOpen"
@@ -256,6 +258,10 @@ watch(places, (newImages) => {
     padding-right: 1rem;
     color: var(--mainTextcolor);
 }
+.read-more{
+    display: none;
+}
+
 /* L & XL SCREENS */
 .Mapicon{
     height: 30px;
@@ -277,25 +283,6 @@ watch(places, (newImages) => {
     font-size: 1.1rem;
 }
 
-#categories{
-    /* margin-left: 2.5%; */
-    background: var(--mainColor);
-    color: var(--mainTextcolor);
-    border: 2px solid var(--secondaryColor);
-    font-size: 1.1rem;
-    border-radius: 10px;
-    height: 2.3rem;
-    width: max-content;
-    text-indent: 3px;
-    transition: border 300ms ease;
-    outline: none;
-}
-
-@media (width < 768px) {
-    #categories{
-        font-size: 0.9rem;
-    }
-}
 
 .places .placeHolder-left {
     width: 95%;
@@ -417,5 +404,35 @@ watch(places, (newImages) => {
     width: 22px;
     margin-right: 8px;
 }
+@media (width < 375px) {
+    .read-more{
+        display: inline;
+        color: rgb(219, 219, 219);
+        background-color: var(--secondaryColor);
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 4px;
+        font-size: .7rem;
+        font-weight: 800;
+    }
+    .phone-place-description p {
+        display: -webkit-box;
+        line-height: 1.2rem;
+        margin-bottom: 1rem;
+        font-size: .8rem;
+        letter-spacing: 1px;
+        line-clamp: 5;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
+    }
 
+    .phone-place-description h2 {
+    font-size: 1.2em;
+}
+.filter h3{
+
+    font-size: 0.9rem;
+}
+}
 </style>

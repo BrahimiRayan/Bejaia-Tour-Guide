@@ -29,20 +29,27 @@
     background-color: var(--mainColor);
     padding:  0.5rem 0.8rem;
     font-size: .9rem;
-    
 }
 .searchBtn:hover{
     cursor: pointer;
     outline: 2px solid var(--secondaryColor);
 }
 .isActive{
-    transition: background-color 300ms ease-in-out;
     background-color: var(--secondaryColor);
     font-weight: 800;
+    transition: background-color 300ms ease-in-out;
     
 }
 .isActive:hover{
     outline: 2px solid white;
+}
+@media (width < 375px) {
+    .searchBtn{
+        border-radius: 8px;
+        padding:  0.3rem;
+        font-size: .8rem;
+    }   
+
 }
 </style>
 

@@ -17,9 +17,11 @@
         </div>
         <div class="action-btns" v-if="isAuthed">
             <button class="action" @click="handleLike">
-                <img v-if="liked" src="@/assets/pics/socials/like-click.svg" alt="">
-                <img v-else src="@/assets/pics/socials/like-unclick.svg" alt="">
-                <span>J'aime</span>
+                <Transition name="fade" mode="out-in">
+                    <img v-if="liked" src="@/assets/pics/socials/like-click.svg" alt="">
+                    <img v-else src="@/assets/pics/socials/like-unclick.svg" alt="">
+                </Transition>
+                    <span>J'aime</span>
             </button>
             
             <a href="#jump" class="action">
@@ -128,6 +130,7 @@ setTimeout(()=>{
 *{
     scroll-behavior: smooth;
 }
+
 #loading-screen {
           display: flex;
           flex-direction: column;
@@ -151,7 +154,13 @@ setTimeout(()=>{
         color: #009afa;
         margin-top: 1rem;
       }
-
+      .fade-enter-active, .fade-leave-active {
+        transition: transform 500ms ease-in-out;
+        }
+    .fade-enter-from, .fade-leave-to {
+        /* opacity: 0; */
+        transform: scale(2);
+        }
       .comments-section{
         width: 70%;
       }
@@ -336,6 +345,7 @@ setTimeout(()=>{
         .comments-section{
         width: 96%;
       }
+
     }   
 
     @media (width < 425px) {
@@ -350,6 +360,13 @@ setTimeout(()=>{
         }
         .place-cat{
             margin-left: 6%;
+        }
+    }
+
+    @media (width < 375px) {
+        .place-description{
+            width: 98%;
+            font-size: 1rem;
         }
     }
 </style>

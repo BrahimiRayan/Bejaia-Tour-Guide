@@ -138,15 +138,12 @@ header nav ul li{
 
 
 @media (width < 631px) {
-    .img{
-    width: 2.1rem;
-    height: 2.1rem;
+    .img , .bg-user{
+    width: 1.9rem;
+    height: 1.9rem;
    
 }
-.bg-user{ 
-    width: 2.1rem;
-    height: 2.1rem;
-}
+
     .link{
     padding-left: 0px;
 }
@@ -173,10 +170,9 @@ header{
 }
 
 
-@media(width < 361px){
+@media(width < 375px){
     header nav ul li{
-    /* width: fit-content; */
-    font-size: 0.7rem;
+    font-size: 0.76rem;
     margin-left: 1rem;
 }
 }

@@ -7,7 +7,7 @@
                 <h2>{{ isAuthed.displayName }}</h2>
             </div>
             <div class="user-cred">
-                <div><h3>Votre Email</h3> <p> : {{ isAuthed.email.slice(0,18) +'...' }}</p></div>
+                <div><h3>Votre Email</h3> <p> : {{ isAuthed.email.slice(0,16) +'...' }}</p></div>
                 <div><h3>Vous avez aimés</h3> <p> : {{ liked.length }} posts</p></div>
                 <div><h3>Vous avez dans le panier</h3> <p> : {{ saved.length }} posts</p></div>
             </div>
@@ -230,7 +230,7 @@
         font-size: 1rem;
     }
     .NoLikes{
-        font-size: 1.1rem;
+        font-size: .9rem;
     }
     .groupe-imgs button{
         display: none;
@@ -241,14 +241,14 @@
         gap: .5rem;
     }
     .informations img{
-        width: 7rem;
-        height: 7rem;
+        width: 5rem;
+        height: 5rem;
         margin-top: -8%;
     }
 
     .informations h2{
         color: rgb(231, 231, 231);
-        font-size: 1.5rem;
+        font-size: 1.1rem;
     }
 
     .user-infos{
@@ -278,6 +278,10 @@
     }
     .liked-posts h4 {
         font-size: .8rem;
+    }
+    .NoLikes{
+        font-size: .7rem;
+        height: 150px;
     }
 }
 @media (width<322px) {

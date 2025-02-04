@@ -210,6 +210,20 @@ onMounted (async ()=>{
     .comForm button {
      margin-top: 1rem;
      margin-left: 0;
+     padding: .5rem;
+     font-size: .7rem;
+    }
+
+    .comForm input {
+        overflow: scroll;
+        height: 40px;
+        font-size: .7rem;
+    }
+    #comLabel{
+        font-size: 1.1rem;
+      }
+    .NoComments{
+        font-size: .8rem;
     }
     }
 </style>

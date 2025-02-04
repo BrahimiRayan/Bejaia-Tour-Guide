@@ -115,6 +115,18 @@
     }   
 }
 
+@media (width < 375px) {
+    .slider-container .titlepage{
+        margin-top: 3rem;
+        font-size: 3.3rem;
+
+}
+.slider-container{
+    height: 250px;
+
+}
+
+}
 </style>
 
 
