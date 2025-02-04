@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider ,onAuthStateChanged , signInWithPopup, signOut} from "firebase/auth"
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_apiKey,
-  authDomain: import.meta.env.VITE_authDomain,
+  apiKey: "AIzaSyClMosCrYdKnKzSdsw4AvChA_RX205OI0o",
+  authDomain: "bejaia-tour-guide.firebaseapp.com",
   projectId: "bejaia-tour-guide",
-  storageBucket: import.meta.env.VITE_storageBucket,
-  messagingSenderId: import.meta.env.VITE_messagingSenderId,
-  appId: import.meta.env.VITE_appId
+  storageBucket: "bejaia-tour-guide.firebasestorage.app",
+  messagingSenderId: "961077622912",
+  appId: "1:961077622912:web:9a5cfab0070044ac224e65"
 };
 
 // Initialize Firebase
