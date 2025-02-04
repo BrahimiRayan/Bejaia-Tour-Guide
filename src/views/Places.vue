@@ -434,5 +434,9 @@ watch(places, (newImages) => {
 
     font-size: 0.9rem;
 }
+
+#loading-screen h2{
+          font-size: .9rem;
+      }
 }
 </style>

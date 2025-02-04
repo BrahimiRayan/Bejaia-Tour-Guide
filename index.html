@@ -9,10 +9,7 @@
     <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
     <title>Bejaia Tour Guide</title>
     <style>
-      /* Prevent white screen */
       #app { display: none; }
-
-      /* Fullscreen loader */
       #loading-screen {
           display: flex;
           flex-direction: column;
@@ -36,7 +33,12 @@
       }
       #loading-screen h2{
         color: #009afa;
-        font-family: 'Times New Roman', Times, serif;
+      }
+
+      @media (width<376px) {
+        #loading-screen {
+          font-size: 1rem;
+        }
       }
     </style>
   </head>
