@@ -143,7 +143,6 @@ header nav ul li{
     height: 1.9rem;
    
 }
-
     .link{
     padding-left: 0px;
 }

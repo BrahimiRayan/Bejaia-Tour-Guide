@@ -71,10 +71,13 @@ var phone = import.meta.env.VITE_mon_tlfn;
 
 #Wraper{
     margin-top: 6px;
+    margin: 6px auto;
     background: var(--mainColor);
+    max-width: var(--maxscreenwidth);
     display: grid;
     padding: 1.5rem 1rem;
     grid-template-columns: repeat(3, 1fr);
+    box-shadow: rgba(0, 0, 0, 0.384) 0px 2px 4px 0px;
 }
 
 
