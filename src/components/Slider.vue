@@ -10,7 +10,7 @@
                 <div class="item" style="--position:7;"><img src="@/assets/pics/bejaia 7.jpg" alt="" loading="lazy" ></div>
             </div>
 
-            <h1 class="titlepage" data-content="Bejaia Tour Guide">Bejaia Tour Guide</h1>
+            <h1 class="titlepage" data-content="Bejaia Tour Guide" translate="no">Bejaia Tour Guide</h1>
         </section>
 </template>
 
