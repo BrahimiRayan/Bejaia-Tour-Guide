@@ -1,6 +1,6 @@
 <template>
     <div id="introduction">
-        <h2><span>Béjaïa</span> | <span>ⴱⴳⴰⵢⵝ</span> | <span>Bgayet</span> | <span>بجاية</span> </h2>
+        <h2 translate="no"><span translate="no">Béjaïa</span> | <span translate="no">ⴱⴳⴰⵢⵝ</span> | <span translate="no" >Bgayet</span> | <span translate="no">بجاية</span> </h2>
     </div>
     <div class="content" v-for="(histoire , index) in histoires" :key="histoire.id" >
         <h2>{{ histoire.titre }}</h2>
