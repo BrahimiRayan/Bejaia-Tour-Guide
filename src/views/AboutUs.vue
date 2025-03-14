@@ -3,7 +3,7 @@
         <div class="me">
             <div class="Text">
                 <h1>BRAHIMI Rayan</h1>
-                <p>Bienvenue sur Bejaia Tour Guide <span class="New" title="Des modifications ont été apportées à cette application web par rapport à la version 1.0. Désormais, vous pouvez créer un compte, aimer des contenus, sauvegarder des lieux que vous souhaitez visiter à l'avenir, ajouter vos avis sur ces lieux, ainsi que profiter d'optimisations pour améliorer la facilité et la rapidité d'utilisation. Soyez les bienvenus sur BEJAIA TOUR GUID ! ">V2.0</span>! Je m'appelle BRAHIMI Rayan, un étudiant en informatique passionné par ma ville, Bejaia. Ce site est né de mon désir de partager la beauté et la richesse culturelle de notre région avec le monde entier.</p>
+                <p>Bienvenue sur Bejaia Tour Guide <code title="Des modifications ont été apportées à cette application web par rapport à la version 1.0. Désormais, vous pouvez créer un compte, aimer des contenus, sauvegarder des lieux que vous souhaitez visiter à l'avenir, ajouter vos avis sur ces lieux, ainsi que profiter d'optimisations pour améliorer la facilité et la rapidité d'utilisation. Soyez les bienvenus sur BEJAIA TOUR GUID ! ">V2.0</code>! Je m'appelle BRAHIMI Rayan, un étudiant en informatique passionné par ma ville, Bejaia. Ce site est né de mon désir de partager la beauté et la richesse culturelle de notre région avec le monde entier.</p>
             </div>
             <div class="imageHolder">
                 <img src="@/assets/pics/Brahimi_Rayan.png" alt="">
@@ -55,14 +55,6 @@ import { BxFacebookCircle } from '@kalimahapps/vue-icons';
 @import url('https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap');
 *{
     font-family: Signika ,'Poppins', sans-serif;;
-}
-
-.New{
-    background-color: rgb(197, 33, 33);
-    padding: 2px;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: underline;
 }
 
 .contactAmis{

@@ -3,7 +3,7 @@
         <RouterLink to="/" class="logo-link"><div class="logo" ></div></RouterLink>
         <nav>
             <ul>
-                <li><RouterLink class="link" :to="{name : 'places'}">Places</RouterLink></li>
+                <li><RouterLink class="link" :to="{name : 'places'}">Lieux</RouterLink></li>
                 <li><RouterLink class="link" :to="{name : 'histoire'}">Histoire</RouterLink></li>
                 <li><RouterLink class="link" :to="{name : 'about'}">Infos</RouterLink></li>
                 <li class="user">

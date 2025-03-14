@@ -1,7 +1,15 @@
 <template>
-<div v-if="places">
+<div class="cnt" v-if="places">
     <Slider/>
-
+    <button :class="{ 'animatedtglHalper': !openHelper, 'tglHelper': openHelper }" @click="openHelper = !openHelper">
+        <Transition name="turn" mode="out-in">
+            <img v-if="!openHelper" src="../assets/pics/ChatHelper/ChatGuide.png" alt="" >
+            <img v-else src="../assets/pics/ChatHelper/close.svg" alt="">
+        </Transition>
+    </button>
+    <span v-if="openHelper">
+        <ChatHelper :places="places"/>
+    </span>
     <section class="places">
         <div class="filter">
             <h3>Afficher : </h3>
@@ -131,6 +139,13 @@ import ImageResizer from '@/components/imageResizer.vue';
 import { onMounted, ref, watch } from 'vue';
 import { RouterLink} from 'vue-router';
 import PostSocial from '@/components/PostSocial.vue';
+import ChatHelper from '@/components/ChatHelper.vue';
+
+
+// open && close the helper tab 
+ var openHelper = ref(false)
+
+
 // watch the width of the screen for the mobile version :)
 const widthOfScreen = ref(window.innerWidth);
 window.addEventListener('resize',()=>{
@@ -187,6 +202,67 @@ watch(places, (newImages) => {
 </script>
 
 <style scoped>
+
+@keyframes bating {
+    0%{
+       outline: 6px solid #009afa;
+    }25%{
+       outline: 4px solid #47dd21;
+    }50%{
+        outline: 2px solid yellow;
+    }100%{
+        outline: 1px solid red;
+    }
+}
+
+.turn-enter-active,
+.turn-leave-active {
+    transition: transform 900ms ease-in-out;
+}
+
+.turn-enter-from,
+.turn-leave-to {
+    /* opacity: 0; */
+    transform: rotate(360deg);
+}
+    
+    .tglHelper{
+        background: rgb(169, 252, 255);
+        border: none;
+        outline: none;
+        border-radius: 50%;
+        overflow: hidden;
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        z-index: 9999;
+        
+    }
+    .animatedtglHalper{
+        background: rgb(169, 252, 255);
+        border: none;
+        outline: none;
+        border-radius: 50%;
+        overflow: hidden;
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        z-index: 9999;
+        animation: bating 900ms infinite;
+        animation-direction: alternate-reverse;
+        animation-timing-function: ease-in-out;
+    }
+    .tglHelper img , .animatedtglHalper img{
+        width: 100%;
+        aspect-ratio: 1;
+    }
+
+
+
       #loading-screen {
           display: flex;
           flex-direction: column;
@@ -438,5 +514,12 @@ watch(places, (newImages) => {
 #loading-screen h2{
           font-size: .9rem;
       }
+}
+
+@media (width<536px) {
+    .tglHelper , .animatedtglHalper{
+        width: 35px;
+        height: 35px;
+    }
 }
 </style>

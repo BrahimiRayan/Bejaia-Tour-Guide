@@ -206,7 +206,9 @@ onMounted (async ()=>{
         align-items: center;
         /* outline: 2px solid brown; */
     }
-
+    .comment-text{
+        font-size: 0.7rem;
+    }
     .comForm button {
      margin-top: 1rem;
      margin-left: 0;
