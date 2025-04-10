@@ -12,28 +12,23 @@
 
         <div class="problem">
             <h1>Signaler un problem </h1>
-            <form :action="`mailto:${email}`" class="ErrForm" method="post" enctype="text/plain">
-                <label for="name">Nom:</label>
-                <input type="text" placeholder="Votre Nom" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" placeholder="Votre email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" placeholder="Votre Probleme a signaler..." name="message" required></textarea>
-                <button type="submit" class="submitBtn"><CoSend class="SendIcon"/> Envoyer</button>
-            </form>
-
+            <a :href="`mailto:${email}`" class="EmailLink">
+                <div class="submitBtn">
+                    Click ici <CoSend class="SendIcon" />
+                </div>
+             </a>
         </div>
 
         <div class="navigation">
-            <h2>Menu</h2>
+            <h1>Menu</h1>
             <ul>
                 <li><RouterLink class="links" :to="{name : 'places'}">Places</RouterLink></li>
                 <li><RouterLink class="links" :to="{name : 'histoire'}">Histoire</RouterLink></li>
                 <li><RouterLink class="links" :to="{name : 'about'}">Sur Nous</RouterLink></li>
             </ul>
 
-            <RouterLink to="/" class="menu-nav"><div class="logo"></div></RouterLink>
         </div>
+        <RouterLink to="/" class="menu-nav"><div class="logo"></div></RouterLink>
     </div>
 
     <div class="licence">
@@ -75,7 +70,7 @@ var phone = import.meta.env.VITE_mon_tlfn;
     max-width: var(--maxscreenwidth);
     display: grid;
     padding: 1.5rem 1rem;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr) 150px;
 }
 
 
@@ -106,46 +101,35 @@ var phone = import.meta.env.VITE_mon_tlfn;
     margin-bottom: 0.9rem;
 }
 
-
-
-.ErrForm{
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-}
-
-.ErrForm input{
-    padding: .5rem;
-    color: var(--mainColor);
-    font-size: .9rem;
-    border-radius: 6px;
-    border: 2px solid var(--secondaryColor);
-}
-#message{
-    
-    padding: .3rem .5rem;
-    border-radius: 6px;
-    border: 2px solid var(--secondaryColor);
-}
 .SendIcon{
-    width: 30px;
-    height: 30px;
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
 }
 .submitBtn{
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
     font-weight: 600;
     height: 3rem;
     align-self: center;
     border-radius: 20px;
     border: none;
-    margin-top: .5rem;
+    margin: 3rem 2rem;
     background: var(--secondaryColor);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    
 }
-
+.EmailLink{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.submitBtn:hover{
+    background-color: rgb(2, 123, 204);
+    scale: 1.05;
+}
 .icon{
     height: 25px ;
     width: 25px ;
@@ -153,11 +137,12 @@ var phone = import.meta.env.VITE_mon_tlfn;
 }
 
 .navigation{
-    margin-left: 2rem;
+    
+    margin-left: 50%;
 }
 
 
-.navigation h2{
+.navigation h1{
     margin-bottom: 1rem;
 }
 
@@ -165,20 +150,25 @@ var phone = import.meta.env.VITE_mon_tlfn;
     list-style: none;
 
 }
-
+.navigation ul li {
+    margin-left: 5px;
+    transition: all 0.3s ease-in-out;
+}
 .navigation ul li .links{
-    color: white;
+ 
+    color: var(--secondaryColor);
     text-decoration: none;
     font-size: 1rem;
     font-weight: 600;
-
+   
 }
-
+.navigation ul li:hover{
+    color: rgb(76, 76, 204);
+    scale: 1.05;
+}
 .logo {
-    height:50%;
-    width: 50%;
-    /* margin-left: 10%; */
-    /* text-align: center; */
+    height:100%;
+    width: 100%;
     background-image: url('@/assets/pics/Logo!.jpg');
     background-repeat: no-repeat;
     background-size: contain;
@@ -204,9 +194,9 @@ var phone = import.meta.env.VITE_mon_tlfn;
 }
 
 .navigation ul li .links{
-    color: white;
+    color: var(--secondaryColor);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: .9rem;
     font-weight: 600;
     margin-left: 30px;
 
@@ -216,37 +206,22 @@ var phone = import.meta.env.VITE_mon_tlfn;
     display: none;
 }
 
-.ErrForm input{
-    width: 80%;
-}
-#message{
-    width: 80%;
-}
-.SendIcon{
-    width: 30px;
-    height: 30px;
+.submitBtn{
+    width: 200px;
 }
 
-.submitBtn{
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-weight: 600;
-    height: 3rem;
-    /* align-self: center; */
-    border-radius: 20px;
-    border: none;
-    margin-top: .5rem;
-    background: var(--secondaryColor);
-}
+
 
 .navigation{
     margin-left: 0;
 }
 
 }
-
+@media (769px<width<1070px) {
+    .problem h1 , .contact h1, .navigation h1 {
+    font-size: 1.12rem;
+    margin-bottom: 0.9rem;
+}
+}
 
 </style>
