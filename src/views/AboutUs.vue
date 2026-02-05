@@ -2,11 +2,12 @@
     <div>
         <div class="me">
             <div class="Text">
-                <h1>BRAHIMI Rayan</h1>
-                <p>Bienvenue sur Bejaia Tour Guide <code title="Des modifications ont été apportées à cette application web par rapport à la version 1.0. Désormais, vous pouvez créer un compte, aimer des contenus, sauvegarder des lieux que vous souhaitez visiter à l'avenir, ajouter vos avis sur ces lieux, ainsi que profiter d'optimisations pour améliorer la facilité et la rapidité d'utilisation. Soyez les bienvenus sur BEJAIA TOUR GUID ! ">V2.0</code>! Je m'appelle BRAHIMI Rayan, un étudiant en informatique passionné par ma ville, Bejaia. Ce site est né de mon désir de partager la beauté et la richesse culturelle de notre région avec le monde entier.</p>
+                <h1>BRAHIMI Rayan & MECHKOUR Bilal</h1>
+                <p>Bienvenue sur Bejaia Tour Guide <code title="Des modifications ont été apportées à cette application web par rapport à la version 1.0. Désormais, vous pouvez créer un compte, aimer des contenus, sauvegarder des lieux que vous souhaitez visiter à l'avenir, ajouter vos avis sur ces lieux, ainsi que profiter d'optimisations pour améliorer la facilité et la rapidité d'utilisation. Soyez les bienvenus sur BEJAIA TOUR GUID ! ">V2.0</code>!, Nous somme des étudiants en informatique passionnés par notre ville, Bejaia. Ce site est né de notre désir de partager la beauté et la richesse culturelle de notre région avec le monde entier.</p>
             </div>
             <div class="imageHolder">
-                <img src="@/assets/pics/Brahimi_Rayan.png" alt="">
+                <img class="img1" src="@/assets/pics/Brahimi_Rayan.png" alt="">
+                <img class="img2" src="@/assets/pics/bi.png" alt="">
             </div>
         </div>
 
@@ -144,16 +145,97 @@ import { BxFacebookCircle } from '@kalimahapps/vue-icons';
         
     }
 
-    .imageHolder{
+    /* .imageHolder{
+        border: 1px solid white;
+        display: flex;
+
+        justify-content: space-around;
+        align-items: center;
         width: 600px;
         height: 300px;
-        background: rgb(150, 229, 255);
+        background-image: url('../assets/pics/splash.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 120%;
         border-radius:50px ;
         text-align: center;
-    }
-    .imageHolder img{
-        width: 70%;
-    }
+    } */
+    .imageHolder{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding : 2rem;
+    width: 600px;
+    height: 300px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.15),
+        rgba(255,255,255,0.05)
+    );
+
+    background-image: url('../assets/pics/bgj.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    backdrop-filter: blur(12px);
+
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.3);
+
+    box-shadow:
+        0 30px 60px rgba(0,0,0,0.35),
+        inset 0 0 30px rgba(255,255,255,0.05);
+
+    overflow: hidden;
+}
+
+    
+.imageHolder img{
+    width: 90px;
+    height: 90px;
+
+    object-fit: cover;
+    border-radius: 50%;
+
+    border: 2px solid rgba(255,255,255,0.8);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.4),
+        0 0 25px rgba(150,229,255,0.35);
+
+    transition: 
+        transform 0.6s ease,
+        box-shadow 0.6s ease;
+}
+
+.img1{
+    animation: floatA 8s ease-in-out infinite;
+}
+
+.img2{
+    animation: floatB 9s ease-in-out infinite;
+    margin-left: 50%;
+}
+
+
+@keyframes floatA {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(12px, -18px) rotate(1deg); }
+    50%  { transform: translate(30px, 10px) rotate(-1deg); }
+    75%  { transform: translate(10px, 20px) rotate(0.5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes floatB {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(-15px, 25px) rotate(-1deg); }
+    50%  { transform: translate(-30px, -20px) rotate(1deg); }
+    75%  { transform: translate(-10px, 15px) rotate(-0.5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
     .Text{
         /* border: 1px solid lime; */
         width: fit-content;
@@ -229,13 +311,11 @@ import { BxFacebookCircle } from '@kalimahapps/vue-icons';
         width: 90%;
         height: 300px;
         margin: 0 auto;
-        background: rgb(150, 229, 255);
+
         border-radius:50px ;
         text-align: center;
     }
-    .imageHolder img{
-        width: 60%;    
-    }
+
     .Text p{
         margin-top: 1rem;
         /* width: 70%; */

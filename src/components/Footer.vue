@@ -219,8 +219,8 @@ var phone = import.meta.env.VITE_mon_tlfn;
 }
 @media (769px<width<1070px) {
     .problem h1 , .contact h1, .navigation h1 {
-    font-size: 1.12rem;
-    margin-bottom: 0.9rem;
+        font-size: 1.12rem;
+        margin-bottom: 0.9rem;
 }
 }
 
