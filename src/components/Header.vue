@@ -92,15 +92,15 @@ header{
     height: 70px;
     width: 100%;
     max-width: var(--maxscreenwidth);
-    background: var(--mainColor);
-    margin: 0 auto 5px auto;
+    background: #2b3332d4;
+    margin: 0 auto ;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
     /* justify-content: center; */
     border-radius: 10px;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 2000;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;

@@ -1,7 +1,9 @@
 <template>
-<section class="slider-container">
-            <div class="slider" slyle="">
-                <div class="item" style="--position:1;"><img src="@/assets/pics/bejaia 1.jpg" alt="" loading="lazy" ></div>
+<div class="allContainer">
+
+    <section class="slider-container">
+        <div class="slider" slyle="">
+            <div class="item" style="--position:1;"><img src="@/assets/pics/bejaia 1.jpg" alt="" loading="lazy" ></div>
                 <div class="item" style="--position:2;"><img src="@/assets/pics/bejaia 2.jpg" alt="" loading="lazy" ></div>
                 <div class="item" style="--position:3;"><img src="@/assets/pics/bejaia 3.jpg" alt="" loading="lazy" ></div>
                 <div class="item" style="--position:4;"><img src="@/assets/pics/bejaia 4.jpg" alt="" loading="lazy" ></div>
@@ -9,9 +11,11 @@
                 <div class="item" style="--position:6;"><img src="@/assets/pics/bejaia 6.jpg" alt="" loading="lazy" ></div>
                 <div class="item" style="--position:7;"><img src="@/assets/pics/bejaia 7.jpg" alt="" loading="lazy" ></div>
             </div>
-
+            
             <h1 class="titlepage" data-content="Bejaia Tour Guide" translate="no">Bejaia Tour Guide</h1>
         </section>
+
+    </div>
 </template>
 
 <style scoped>
@@ -26,14 +30,23 @@
     }
 }
 
-
-.slider-container{
-    width: 100%;
-    height: 500px;
-    text-align: center;
+.allContainer{
+    
+    background-image: url("../assets/pics/new/bg2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid transparent;
     overflow: hidden;
+}
+.slider-container{
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    
     position: relative;
-
+    margin-top: 8rem;
 }
 .slider-container .slider{
     position: absolute;
@@ -48,6 +61,7 @@
     z-index: 2;
 }
 
+
 .slider-container .slider .item{
     
     position: absolute;
@@ -60,14 +74,15 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50px;
+    /* border-radius: 50px; */
+    border-radius:130px 130px 20px 20px
 }
 
 .slider-container .titlepage{
     color: var(--secondaryColor);
     font-size: clamp(20px , 8rem , 11rem);
     position: relative;
-
+    /* margin-top: -120px; */
 }
 
 .slider-container .titlepage::after{

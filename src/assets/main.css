@@ -29,11 +29,7 @@ body{
 }
 
 
-/* Basic header styling */
 
-
-
-/* Basic Main styling  */
 
 main{
     height: calc(100% + 150px);
@@ -42,7 +38,7 @@ main{
     max-width: var(--maxscreenwidth);
     margin: 0 auto;
     background: var(--mainColor);
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 .highlater{

@@ -1,12 +1,17 @@
 <template>
 <div class="cnt" v-if="places">
+
     <Slider/>
+    <!-- helper bot  -->
     <button :class="{ 'animatedtglHalper': !openHelper, 'tglHelper': openHelper }" @click="openHelper = !openHelper">
         <Transition name="turn" mode="out-in">
             <img v-if="!openHelper" src="../assets/pics/ChatHelper/ChatGuide.png" alt="" >
             <img v-else src="../assets/pics/ChatHelper/close.svg" alt="">
         </Transition>
     </button>
+
+    <Description/>
+
     <span v-if="openHelper">
         <ChatHelper :places="places"/>
     </span>
@@ -140,7 +145,7 @@ import { onMounted, ref, watch } from 'vue';
 import { RouterLink} from 'vue-router';
 import PostSocial from '@/components/PostSocial.vue';
 import ChatHelper from '@/components/ChatHelper.vue';
-
+import Description from '@/components/Description.vue';
 
 // open && close the helper tab 
  var openHelper = ref(false)
