@@ -20,7 +20,7 @@
                 <NavigationButtons @term="recivedterm" />
             </div>
             <div class="Grid">
-                <div v-if="places.length !== 0" v-for="(place, index) in places" :key="index">
+                <div v-for="place in visiblePlaces" :key="place.id">
 
                     <span v-if="categorie === 'tout'">
                         <div class="placeHolder-left" v-if="widthOfScreen >= 769">
@@ -46,20 +46,20 @@
                             <div class="placeImg">
 
                                 <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom"
-                                    @click="openImage(index)" loading="lazy">
-                                <FlArrowExpand class="expandIcon" @click="openImage(index)" />
+                                    @click="openImage(place)" loading="lazy">
+                                <FlArrowExpand class="expandIcon" @click="openImage(place)" />
                             </div>
                             <ImageResizer v-if="place.isOpen" :isVisible="place.isOpen"
-                                :imgsrc="`${place.img.toLowerCase()}.jpg`" @close="closeImage(index)" />
-                            <PostSocial :postID="place.id" class="is"/>
+                                :imgsrc="`${place.img.toLowerCase()}.jpg`" @close="closeImage(place)" />
+                            <PostSocial :postID="place.id" class="PostSocial"/>
                         </div>
 
 
                         <div class="phone-placeHolder" v-if="widthOfScreen < 769">
                             <div class="phone-placeImg">
                                 <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom"
-                                    @click="openImage(index)" loading="lazy">
-                                <FlArrowExpand class="expandIcon" @click="openImage(index)" />
+                                    @click="openImage(place)" loading="lazy">
+                                <FlArrowExpand class="expandIcon" @click="openImage(place)" />
                             </div>
                             <div class="phone-place-description">
                                 <h2>
@@ -76,7 +76,7 @@
                                     plus</RouterLink>
                             </div>
                             <ImageResizer v-if="place.isOpen" :isVisible="place.isOpen"
-                                :imgsrc="`${place.img.toLowerCase()}.jpg`" @close="closeImage(index)" />
+                                :imgsrc="`${place.img.toLowerCase()}.jpg`" @close="closeImage(place)" />
                             <PostSocial :postID="place.id" />
                         </div>
                     </span>
@@ -105,25 +105,27 @@
                             <div class="placeImg">
 
                                 <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom"
-                                    @click="openImage(index)" loading="lazy">
-                                <FlArrowExpand class="expandIcon" @click="openImage(index)" />
+                                    @click="openImage(place)" loading="lazy">
+                                <FlArrowExpand class="expandIcon" @click="openImage(place)" />
                             </div>
                             <ImageResizer v-if="place.isOpen" :isVisible="place.isOpen"
-                                :imgsrc="`${place.img.toLowerCase()}.jpg`" @close="closeImage(index)" />
-                            <PostSocial :postID="place.id" />
-                        </div>>
+                                :imgsrc="`${place.img.toLowerCase()}.jpg`" @close="closeImage(place)" />
+                            <PostSocial :postID="place.id" class="PostSocial"/>
+                        </div>
+                        
 
                         <div class="phone-placeHolder" v-if="place.categorie === categorie && widthOfScreen < 769">
                             <div class="phone-placeImg">
                                 <img :src="`${place.img.toLowerCase()}.jpg`" :alt="place.nom" :title="place.nom"
-                                    @click="openImage(index)" loading="lazy">
-                                <FlArrowExpand class="expandIcon" @click="openImage(index)" />
+                                    @click="openImage(place)" loading="lazy">
+                                <FlArrowExpand class="expandIcon" @click="openImage(place)" />
                             </div>
                             <div class="phone-place-description">
                                 <h2>
                                     <RouterLink class="post-name" :to="{ name: 'place', params: { id: place.id } }">{{
                                         place.nom }} <img src="@/assets/pics/click.svg" alt="" loading="lazy">
-                                    </RouterLink> <a
+                                    </RouterLink> 
+                                    <a
                                         :href="`https://www.google.com/maps?q=${place.location.latitude},${place.location.longitude}`"
                                         target="_blank" class="location">
                                         <SiGooglemaps class="Mapicon" />
@@ -134,7 +136,7 @@
                                     plus</RouterLink>
                             </div>
                             <ImageResizer v-if="place.isOpen" :isVisible="place.isOpen"
-                                :imgsrc="`${place.img.toLowerCase()}.jpg`" @close="closeImage(index)" />
+                                :imgsrc="`${place.img.toLowerCase()}.jpg`" @close="closeImage(place)" />
                             <PostSocial :postID="place.id" />
                         </div>
 
@@ -142,7 +144,7 @@
 
                 </div>
 
-                <div v-else id="loading-screen">
+                <div v-if="places.length === 0" id="loading-screen">
                     <img src="../../spinner.gif" alt="">
                     <h2>Chargement en cours...</h2>
                 </div>
@@ -161,7 +163,7 @@ import NavigationButtons from '@/components/NavigationButtons.vue';
 import { db } from '@/Firebase/firebase.js';
 import { onSnapshot, collection } from 'firebase/firestore';
 import ImageResizer from '@/components/imageResizer.vue';
-import { onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { RouterLink } from 'vue-router';
 import PostSocial from '@/components/PostSocial.vue';
 import ChatHelper from '@/components/ChatHelper.vue';
@@ -178,18 +180,21 @@ window.addEventListener('resize', () => {
 
 const places = ref([]);
 const categorie = ref('tout');
+const visiblePlaces = computed(() => places.value.filter((place) =>
+    categorie.value === 'tout' || place.categorie === categorie.value
+));
 
 const recivedterm = (value) => {
     categorie.value = value;
 }
 
-const openImage = (index) => {
-    places.value[index].isOpen = true;
+const openImage = (place) => {
+    place.isOpen = true;
     document.body.style.overflow = 'hidden';
 };
 
-const closeImage = (index) => {
-    places.value[index].isOpen = false;
+const closeImage = (place) => {
+    place.isOpen = false;
     document.body.style.overflow = 'auto';
 };
 
@@ -223,7 +228,7 @@ watch(places, (newImages) => {
 
 <style scoped>
 
-.is{
+.PostSocial{
     position: absolute;
     bottom: 0;
     width: 100%;
