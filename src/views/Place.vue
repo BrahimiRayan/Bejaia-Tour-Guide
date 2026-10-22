@@ -323,7 +323,7 @@ setTimeout(() => {
 .place-description {
     width: 100%;
     color: #d1d5db;
-    font-size: 1.35rem;
+    font-size: 1rem;
     line-height: 1.8;
     letter-spacing: 0.5px;
     text-align: justify;
@@ -334,6 +334,7 @@ setTimeout(() => {
 }
 
 .comments-wrapper {
+    padding: 1rem;
     width: 100%;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 40px;
