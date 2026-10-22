@@ -1,63 +1,79 @@
 <template>
-    <div v-if="place" class="place">
-        <h1 class="place-name"> {{ place.nom }}</h1>
-        <div class="place-image-container">
+    <div v-if="place" class="place-page">
+        
+        <header class="place-header">
+            <div class="category-tag">
+                Catégorie <span>{{ place.categorie }}</span>
+            </div>
+            <h1 class="place-name">{{ place.nom }}</h1>
+        </header>
+
+        <div class="hero-container">
             <Transition name="fade-img-map" mode="out-in">
-                <img v-if="!toogled" class="place-img" :src="`/${place.img.toLowerCase()}.jpg`" :title="place.nom">
-                <Map v-else :nom="place.nom" :lat="place.location.latitude" :long="place.location.longitude"
-                    class="place-img" />
+                <img 
+                    v-if="!toogled" 
+                    class="hero-media" 
+                    :src="`/${place.img.toLowerCase()}.jpg`" 
+                    :title="place.nom"
+                >
+                <div v-else class="hero-media map-wrapper">
+                    <Map 
+                        :nom="place.nom" 
+                        :lat="place.location.latitude" 
+                        :long="place.location.longitude"
+                        class="map-element" 
+                    />
+                </div>
             </Transition>
-            <div class="btns-holder">
-                <a :href="`/${place.img.toLowerCase()}.jpg`" :download="`${place.nom}.jpg`" class="download-btn"
-                    title="Télécharger">
-                    <button>
-                        <img src="../assets/pics/download.svg" alt="" loading="lazy">
-                    </button>
+
+            <div class="floating-tools">
+                <a :href="`/${place.img.toLowerCase()}.jpg`" :download="`${place.nom}.jpg`" class="tool-btn" title="Télécharger">
+                    <img src="../assets/pics/download.svg" alt="" loading="lazy">
                 </a>
-                <button @click="copyLink" class="share-btn" title="Copier le lien">
+                <button @click="copyLink" class="tool-btn" title="Copier le lien">
                     <img src="../assets/pics/copy.svg" alt="" loading="lazy">
                 </button>
+                <button @click="toggleShow" class="tool-btn" title="Voir la carte">
+                    <Transition name="fade" mode="out-in">
+                        <img v-if="toogled" src="../assets/pics/socials/map-open.svg" alt="">
+                        <img v-else src="../assets/pics/socials/map-close.svg" alt="">
+                    </Transition>
+                </button>
             </div>
-            <span v-if="copied" class="copy-msg">Link copied!</span>
-        </div>
-        <div class="action-btns" v-if="isAuthed">
-            <button class="action" @click="handleLike">
-                <Transition name="fade" mode="out-in">
-                    <img v-if="liked" src="@/assets/pics/socials/like-click.svg" alt="">
-                    <img v-else src="@/assets/pics/socials/like-unclick.svg" alt="">
-                </Transition>
-                <span>J'aime</span>
-            </button>
-
-            <a href="#jump" class="action">
-                <img src="@/assets/pics/socials/comment.svg" alt="">
-                <span>Commenter</span>
-            </a>
-            <button class="action" @click="handleSave">
-                <img v-if="save" src="@/assets/pics/socials/save-active.svg" alt="">
-                <img v-else src="@/assets/pics/socials/save-no-active.svg" alt="">
-                <span>Panier</span>
-            </button>
-
-
-            <button @click="toggleShow" class="action">
-                <img v-if="toogled" src="../assets/pics/socials/map-open.svg" alt="">
-                <img v-else src="../assets/pics/socials/map-close.svg" alt="">
-                <span>Map</span>
-            </button>
-
-        </div>
-        <p class="place-description" id="jump">{{ place.description }}</p>
-        <h2 class="place-cat">categorie : <span>{{ place.categorie }}</span></h2>
-
-
-
-        <div class="comments-section">
-            <Comments :post_id="postId" />
         </div>
 
+        <main class="place-content">
+            
+            <div class="action-bar" v-if="isAuthed">
+                <button class="action-btn" @click="handleLike">
+                    <Transition name="fade" mode="out-in">
+                        <img v-if="liked" src="@/assets/pics/socials/like-click.svg" alt="">
+                        <img v-else src="@/assets/pics/socials/like-unclick.svg" alt="">
+                    </Transition>
+                    <span>J'aime</span>
+                </button>
 
+                <a href="#jump" class="action-btn">
+                    <img src="@/assets/pics/socials/comment.svg" alt="">
+                    <span>Commenter</span>
+                </a>
+
+                <button class="action-btn" @click="handleSave">
+                    <img v-if="save" src="@/assets/pics/socials/save-active.svg" alt="">
+                    <img v-else src="@/assets/pics/socials/save-no-active.svg" alt="">
+                    <span>Panier</span>
+                </button>
+            </div>
+
+            <p class="place-description" id="jump">{{ place.description }}</p>
+
+            <div class="comments-wrapper">
+                <Comments :post_id="postId" />
+            </div>
+
+        </main>
     </div>
+
     <div v-else id="loading-screen">
         <img src="../../spinner.gif" alt="">
         <h2>Chargement en cours...</h2>
@@ -74,11 +90,9 @@ import useLike from '@/composables/useLikesManagement';
 import notify from '@/composables/useNotify';
 import Comments from '@/components/Comments.vue';
 import Map from '@/components/Map.vue';
-const { toggleLike,
-    fetchUserLikes,
-    toggleSave,
-    fetchUserSaves
-} = useLike();
+
+const { toggleLike, fetchUserLikes, toggleSave, fetchUserSaves } = useLike();
+
 const copied = ref(false);
 const route = useRoute();
 const postId = route.params.id;
@@ -90,8 +104,6 @@ const toogled = ref(false);
 const toggleShow = () => {
     toogled.value = !toogled.value;
 }
-
-
 
 onMounted(async () => {
     const docRef = doc(db, 'places', postId);
@@ -115,14 +127,11 @@ onMounted(async () => {
     return unsubscribe;
 });
 
-
-
 const handleLike = async () => {
     await toggleLike(postId);
     liked.value = !liked.value;
 };
 
-// still the save methode needs to be added
 const handleSave = async () => {
     await toggleSave(postId)
     save.value = !save.value;
@@ -130,16 +139,15 @@ const handleSave = async () => {
 
 const copyLink = () => {
     navigator.clipboard.writeText(window.location.href).then(() => {
-        notify('Le lien est copier avec succès', 'success')
+        notify('Le lien est copié avec succès', 'success')
     });
 };
+
 setTimeout(() => {
     if (!isAuthed.value) {
-        console.log("you are not authinticated !!")
         notify('Vous devez être connecté pour liker, commenter et accéder à d\'autres fonctionnalités.', 'warning');
     }
-}, 3000)
-
+}, 3000);
 </script>
 
 <style scoped>
@@ -149,282 +157,284 @@ setTimeout(() => {
     scroll-behavior: smooth;
 }
 
+.place-page {
+    background-color: var(--mainBgcolor, #0d1117);
+    min-height: 100vh;
+    padding-bottom: 100px;
+    font-family: "Smooch Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.place-header {
+    text-align: center;
+    padding: 80px 20px 40px;
+    max-width: 900px;
+}
+
+.category-tag {
+    font-size: 1.1rem;
+    color: #8b96a5;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.category-tag span {
+    color: #0d1117;
+    background-color: var(--secondaryColor);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-left: 8px;
+}
+
+.place-name {
+    font-family: "Smooch Sans", sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    color: var(--secondaryColor);
+    line-height: 1;
+    margin: 0;
+    text-shadow: 0 10px 30px rgba(0, 168, 255, 0.2);
+}
+
+.hero-container {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    aspect-ratio: 16/9;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+    margin-bottom: 40px;
+}
+
+.hero-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.map-wrapper {
+    background: #12171c;
+}
+
+.map-element {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.floating-tools {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.tool-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(23, 40, 227, 0.707);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.tool-btn img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.tool-btn:hover {
+    background: var(--secondaryColor);
+    border-color: var(--secondaryColor);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 168, 255, 0.4);
+}
+
+.tool-btn:hover img {
+    filter: brightness(0) invert(0);
+}
+
+.place-content {
+    width: 90%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.action-bar {
+    display: flex;
+    gap: 20px;
+    padding: 16px 32px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 60px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: #eef2f6;
+    border: none;
+    cursor: pointer;
+    font-family: "Smooch Sans", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.action-btn img {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.3s ease;
+}
+
+.action-btn:hover {
+    color: var(--secondaryColor);
+}
+
+.action-btn:hover img {
+    transform: scale(1.2);
+}
+
+.place-description {
+    width: 100%;
+    color: #d1d5db;
+    font-size: 1.35rem;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    text-align: justify;
+    margin-bottom: 60px;
+    padding: 0 10px;
+    border-left: 3px solid var(--secondaryColor);
+    padding-left: 20px;
+}
+
+.comments-wrapper {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 40px;
+}
+
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+    transform: scale(1.5);
+    opacity: 0;
+}
+
+.fade-img-map-enter-active,
+.fade-img-map-leave-active {
+    transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
+}
+.fade-img-map-enter-from,
+.fade-img-map-leave-to {
+    transform: scale(1.05);
+    opacity: 0;
+}
+
 #loading-screen {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
-    background: #2B3332;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    font-weight: bold;
+    height: 100vh;
+    background: #0d1117;
 }
 
 #loading-screen img {
-    margin-top: 15%;
     width: 5rem;
     height: 5rem;
 }
 
 #loading-screen h2 {
-    color: #009afa;
-    margin-top: 1rem;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: transform 500ms ease-in-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    transform: scale(2);
-}
-
-.fade-img-map-enter-active,
-.fade-img-map-leave-active {
-    transition: transform 500ms ease-in-out;
-}
-
-.fade-img-map-enter-from,
-.fade-img-map-leave-to {
-    /* opacity: 0; */
-    transform: scale(1.09);
-}
-
-.comments-section {
-    width: 70%;
-}
-
-.action-btns {
-    margin-top: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border: 1px solid rgb(124, 124, 124);
-    border-left: none;
-    border-right: none;
-    width: 70%;
-    padding-block: .5rem;
-}
-
-.action-btns .action img,
-.Mapicon {
-    width: 24px;
-    height: 24px;
-
-}
-
-.action-btns .action {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: .3rem .5rem;
-    background-color: transparent;
-    color: aliceblue;
-    border: none;
-    border-radius: 6px;
-    font-size: .9rem;
-}
-
-.action-btns a {
-    text-decoration: none;
-}
-
-.place {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.place-cat {
-    font-family: "Smooch sans";
-    font-size: 1rem;
-    color: aliceblue;
-    align-self: flex-start;
-    margin-left: 15.5%;
-    margin-bottom: .3rem;
-}
-
-.place-cat span {
-
-    font-family: "Smooch sans";
-    padding-inline: .4rem;
-    border-radius: 8px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    background-color: var(--secondaryColor);
-    box-shadow: 2px 2px 8px rgb(68, 65, 65);
-
-}
-
-.place-name {
-    font-family: "Smooch Sans";
-    margin-bottom: 1rem;
-    text-align: center;
-    font-size: 5rem;
     color: var(--secondaryColor);
-}
-
-.place-description {
-    width: 70%;
-    color: white;
     margin-top: 1rem;
-    font-size: 1.4rem;
-    font-weight: 600;
-    word-spacing: 3px;
-    letter-spacing: 1px;
-    /* border: 2px solid white; */
-    padding: 1rem .5rem;
-    text-indent: .8rem;
-    font-family: "Smooch Sans";
-    text-align: left;
+    font-family: "Smooch Sans", sans-serif;
+    letter-spacing: 2px;
 }
 
-.place-img {
-    border-radius: 1rem;
-    margin-right: 1rem;
-    box-shadow: 3px 2px 9px rgb(32, 32, 32);
-    max-width: 580px;
-    max-height: 360px;
-    transition: transform 400ms ease-in-out;
-}
-
-.place-img:hover {
-    transform: scale(1.04);
-}
-
-.place-image-container {
-    display: flex;
-}
-
-.btns-holder {
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-    margin-top: 20%;
-
-}
-
-.download-btn,
-.share-btn {
-    width: 100%;
-    height: 2rem;
-    margin-top: 1rem;
-    text-decoration: none;
-
-}
-
-.download-btn button,
-.share-btn {
-    background-color: rgba(51, 38, 38, 0.568);
-    backdrop-filter: blur(6px);
-    height: 2rem;
-    width: 2rem;
-    border: none;
-    border-radius: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 0px 3px var(--secondaryColor);
-    transition: box-shadow 300ms ease-in-out, transform 400ms ease-in-out;
-
-}
-
-.download-btn button img,
-.share-btn img {
-    height: 1.4rem;
-    width: 1.4rem;
-    border-radius: 50%;
-}
-
-.download-btn button:hover,
-.share-btn:hover {
-    box-shadow: 0px 0px 8px var(--secondaryColor);
-    transform: translateY(-5px);
-}
-
-
-
-@media (width < 575px) {
-    .action-btns .action {
-        font-size: .8rem;
+@media (max-width: 768px) {
+    .place-header {
+        padding-top: 60px;
+    }
+    
+    .hero-container {
+        width: 95%;
+        aspect-ratio: 4/3;
+        border-radius: 16px;
     }
 
-    .action-btns {
-        margin-top: 1rem;
-        width: 99%;
+    .place-content {
+        width: 95%;
     }
 
-    .place-cat {
-        margin-left: 3%;
+    .floating-tools {
+        bottom: 15px;
+        right: 15px;
     }
 
-    .place-name {
-        font-size: 3rem;
+    .tool-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .tool-btn img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .action-bar {
+        border-radius: 20px;
+        padding: 15px;
+        gap: 15px;
     }
 
     .place-description {
-        width: 96%;
-        font-size: 1.2rem;
+        font-size: 1.15rem;
+        padding-left: 15px;
     }
-
-    .place-img {
-        align-self: center;
-        width: 90%;
-        margin-right: 0;
-    }
-
-    .place-image-container {
-        flex-direction: column;
-
-    }
-
-    .btns-holder {
-        flex-direction: row;
-        margin-top: 0;
-        margin-left: 70%;
-        width: fit-content;
-        /* border: 1px solid salmon; */
-    }
-
-    .share-btn {
-        width: 3rem;
-    }
-
-    .comments-section {
-        width: 96%;
-    }
-
 }
 
-@media (width < 425px) {
-    .action-btns span {
+@media (max-width: 425px) {
+    .action-btn span {
         display: none;
     }
-}
-
-@media (575px<=width <895px) {
-    .place-description {
-        width: 90%;
-        font-size: 1.2rem;
+    
+    .action-btn {
+        padding: 10px;
     }
-
-    .place-cat {
-        margin-left: 6%;
-    }
-}
-
-@media (width < 375px) {
-    .place-description {
-        width: 98%;
-        font-size: 1rem;
+    
+    .action-bar {
+        gap: 25px;
     }
 }
 </style>
