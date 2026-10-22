@@ -20,8 +20,6 @@
 
 <style scoped>
 
-/* ANIMATIONS  */
-
 @keyframes autoRun{
     from{
         transform: perspective(1000px) rotateX(-18deg) rotateY(0deg);
@@ -38,6 +36,8 @@
     background-size: cover;
     border: 1px solid transparent;
     overflow: hidden;
+    box-shadow: 0 20px 40px -10px #00a8ff99;
+
 }
 .slider-container{
     z-index: 100;
@@ -74,7 +74,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* border-radius: 50px; */
     border-radius:130px 130px 20px 20px
 }
 
@@ -82,7 +81,6 @@
     color: var(--secondaryColor);
     font-size: clamp(20px , 8rem , 11rem);
     position: relative;
-    /* margin-top: -120px; */
 }
 
 .slider-container .titlepage::after{

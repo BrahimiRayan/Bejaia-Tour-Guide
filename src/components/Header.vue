@@ -92,7 +92,7 @@ header{
     height: 70px;
     width: 100%;
     max-width: var(--maxscreenwidth);
-    background: #2b3332d4;
+    background: #0102025a;
     margin: 0 auto ;
 
     display: flex;
@@ -103,7 +103,8 @@ header{
     position: fixed;
     top: 0;
     z-index: 2000;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px; */
+    backdrop-filter:blur(5px);
 }
 
 header .logo {
