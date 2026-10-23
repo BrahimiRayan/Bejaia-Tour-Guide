@@ -1,62 +1,108 @@
-# bejaia-tour-guid
+# Béjaïa Tour Guide
 
-# The Project in general
+> Un guide touristique moderne et interactif pour **Béjaïa** — la perle de la Méditerranée.
+> Explorez l'histoire de la ville, découvrez ses plus beaux lieux, sauvegardez vos favoris, planifiez votre voyage et partagez votre expérience avec la communauté.
 
-## Brief description
-Bejaia Tour Guide est un projet personnel, conçu comme un guide touristique gratuit et accessible pour aider les visiteurs à découvrir notre magnifique ville. Ce site n'a aucun but lucratif ; il s'agit avant tout d'une expérience enrichissante pour moi et d'un service pour les voyageurs et les amoureux de la nature.
+![Version](https://img.shields.io/badge/version-2.1.0-009afa?style=for-the-badge)
+![Vue.js](https://img.shields.io/badge/Vue.js-3.x-42b883?style=for-the-badge&logo=vue.js&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
+![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
 
-### TECHNOLOGIES
-"Bejaia Tour Guide" is a web app made using VUE3.js ,CSS ,JS ,FIREBASE.
-## Table of Contents
-- [Project Setup](#Project_Setup)
-- [Compile and Hot-Reload for Development](#Compile_and_Hot-Reload_for_Development)
-- [Contributing](#contributing)
-- [License](#license)
+---
 
-## Customize configuration
+## Table des matières
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- [À propos du projet](#à-propos-du-projet)
+- [Version 2.1 — Nouveautés](#version-21--nouveautés)
+- [Fonctionnalités existantes](#fonctionnalités-existantes)
+- [Stack technique](#stack-technique)
+- [Structure du projet](#structure-du-projet)
+- [Démarrage](#démarrage)
+- [Variables d'environnement](#variables-denvironnement)
+- [Feuille de route](#feuille-de-route)
+- [Auteur](#auteur)
+- [Remerciements](#remerciements)
+- [Licence](#licence)
 
-## Project Setup
+---
 
-```sh
-npm install
-```
+## À propos du projet
 
-### Compile and Hot-Reload for Development
+**Béjaïa Tour Guide** est un projet personnel, gratuit et à but non lucratif, réalisé par un étudiant en informatique passionné par sa ville. Il vise à aider les visiteurs à découvrir la beauté, l'histoire et la culture de Béjaïa à travers une expérience web moderne, immersive et intuitive.
 
-```sh
-npm run dev
-```
+Le site repose sur trois piliers :
 
-### Compile and Minify for Production
+1. **Découvrir** — une sélection soignée des lieux les plus emblématiques de Béjaïa.
+2. **Apprendre** — une section dédiée à l'histoire, retraçant plus de 2000 ans de civilisation.
+3. **Partager** — comptes utilisateurs, likes, sauvegardes, commentaires et profils personnalisés.
 
-```sh
-npm run build
-```
+---
 
-## Contributing
+## Version 2.1 — Nouveautés
 
-Thank you for considering contributing to our project! Whether you're reporting bugs, suggesting features, or submitting pull requests, we appreciate your contributions.
+La V2.1 est la plus grande refonte du projet. Chaque écran a été reconstruit avec une esthétique sombre moderne, des animations fluides et une expérience utilisateur premium.
 
-### Bug Reports
+**Design**
+Thème sombre premium (`#0d1117`) avec accent bleu océan (`#009afa`), effets de glassmorphism, typographie cohérente (`Smooch Sans` / `Inter`) et micro-animations fluides.
 
-If you encounter a bug while using our project, please open an issue on our [issue tracker](https://github.com/BrahimiRayan/Bejaia-Tour-Guide/issues) and provide as much detail as possible. Include steps to reproduce the bug, expected behavior, and any relevant screenshots or error messages.
+**Carte interactive**
+Marqueur animé personnalisé, basculement Plan / Satellite, bouton "Itinéraire" vers Google Maps, popups et contrôles de zoom au thème sombre, zoom par défaut plus élevé.
 
-### Pull Requests
+**Page de détail d'un lieu**
+Image hero cinématique avec bascule vers la carte, outils flottants (télécharger, copier, carte), barre d'actions élégante (J'aime, Commenter, Panier), description éditoriale, visionneuse d'image modale sans décalage de mise en page.
 
-We welcome pull requests from anyone interested in improving our project. Before submitting a pull request, please follow these guidelines:
+**Page Histoire**
+Mise en page magazine avec alternance texte/image, apparitions au scroll, numéros en filigrane, ligne de temps verticale lumineuse.
 
-1. Fork the repository and create your branch from the `main` branch.
-2. Make your changes, ensuring to follow our coding conventions and style guides.
-3. Test your changes thoroughly to ensure they work as expected.
-4. Ensure your commits are well-documented and include descriptive commit messages.
-5. Push your changes to your fork and submit a pull request to the `main` branch of our repository.
-6. Provide a clear description of your changes and why they are beneficial.
+**Profil**
+Bannière cinématique avec fondu, avatar en chevauchement, statistiques en direct, carrousels style Netflix pour les lieux aimés et sauvegardés.
 
-We'll review your pull request and provide feedback as needed. Thank you for helping to improve our project!
+**Commentaires**
+Champ de saisie style chat avec avatar, bouton d'envoi désactivé quand vide, cartes de messages élégantes, bouton supprimer contextuel.
+
+**Filtres et navigation**
+Barre de filtres en pilules sur desktop, overlay bottom-sheet sur mobile (`< 780px`), bouton unique affichant le filtre actif.
+
+**Responsive mobile-first**
+Chaque composant repensé pour téléphones, tablettes et ordinateurs. Cartes pleine largeur sur mobile, gestes optimisés, défilement naturel.
+
+**Header et Footer**
+Footer éditorial en 4 colonnes, soulignements animés au survol, logo en pastille arrondie, header sticky en verre avec état actif animé.
+---
+
+## Fonctionnalités existantes
+
+Fonctionnalités déjà présentes avant la V2.1 :
+
+- Base de données des lieux alimentée par Firebase (collection `places`)
+- Lieux catégorisés — Plages, Historique, Villes, Cascades, Nature
+- Authentification — inscription, connexion, persistance de session
+- Système de likes — un like par utilisateur stocké dans Firestore
+- Sauvegarde dans le panier — planifier ses futures visites
+- Commentaires — fils de discussion par lieu avec données utilisateur
+- Intégration de la carte Leaflet avec marqueurs et zones circulaires
+- Téléchargement et partage d'images sur les pages de lieux
+- Section Histoire avec contenu éditorial riche
+- Page À propos avec mission, portfolio et remerciements
+- Licence MIT et mention de conformité au droit d'auteur
+
+---
+
+## Stack technique
+
+| Couche | Technologie |
+|---|---|
+| Framework | Vue 3 (Composition API + `<script setup>`) |
+| Routeur | Vue Router 4 |
+| Backend | Firebase Firestore |
+| Authentification | Firebase Authentication |
+| Cartes | Leaflet + OpenStreetMap + Esri Satellite |
+| Icônes | @kalimahapps/vue-icons |
+| Polices | Google Fonts — Smooch Sans, Inter, Playfair Display |
+| Styles | CSS scoped + variables CSS |
+| Build | Vite |
+| Hébergement | Netlify |
 
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
