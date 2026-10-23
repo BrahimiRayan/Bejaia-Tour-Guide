@@ -100,16 +100,18 @@
 
     @keyframes autoRun{
     from{
-        transform: perspective(300px) rotateX(-18deg) rotateY(0deg);
+        transform: perspective(200px) rotateX(-18deg) rotateY(0deg);
     }to{
-        transform: perspective(300px) rotateX(-18deg) rotateY(360deg);
+        transform: perspective(200px) rotateX(-18deg) rotateY(360deg);
     }
 }
 
 .slider-container{
     height: 300px;
 }
-
+.slider {
+    transform: perspective(500px);
+}
 .slider-container .titlepage{
     margin-top: 2rem;
     font-size: 4.3rem;

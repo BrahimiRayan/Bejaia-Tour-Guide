@@ -59,4 +59,16 @@
     h1{
         font-size: 2.4rem;
     }
+
+    @media (width < 769px) {
+        section{
+            padding: 5rem 1rem;
+        }
+        h1{
+            font-size: 1.4rem;
+        }
+        p{
+            font-size: .9rem;
+        }
+    }
 </style>
