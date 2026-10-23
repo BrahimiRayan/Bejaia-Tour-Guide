@@ -285,8 +285,8 @@ setTimeout(() => {
     padding: 16px 32px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 60px;
-    margin-bottom: 40px;
+    border-radius: 3.7rem;
+    margin-bottom: 3.5rem;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -300,7 +300,7 @@ setTimeout(() => {
     border: none;
     cursor: pointer;
     font-family: "Smooch Sans", sans-serif;
-    font-size: 1.2rem;
+    font-size: .8rem;
     font-weight: 600;
     text-decoration: none;
     transition: color 0.3s ease;
@@ -384,8 +384,11 @@ setTimeout(() => {
 }
 
 @media (max-width: 768px) {
+    .action-bar {
+        padding: .5rem;
+    }
     .place-header {
-        padding-top: 60px;
+        padding-top: 5rem;
     }
     
     .hero-container {
@@ -420,7 +423,7 @@ setTimeout(() => {
     }
 
     .place-description {
-        font-size: 1.15rem;
+        font-size: 1rem;
         padding-left: 15px;
     }
 }

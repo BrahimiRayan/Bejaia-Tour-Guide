@@ -271,6 +271,7 @@ watch(histoires, (newImages) => {
     z-index: 0;
     user-select: none;
     transition: all 0.6s ease;
+    
 }
 
 .magazine-block.is-visible .index-number {
@@ -293,6 +294,7 @@ watch(histoires, (newImages) => {
     line-height: 1.9;
     margin-bottom: 30px;
     position: relative;
+    color: white;
     z-index: 1;
 }
 
@@ -355,6 +357,7 @@ watch(histoires, (newImages) => {
 @media (max-width: 900px) {
     .content-stream::before {
         display: none;
+        
     }
 
     .magazine-block {
@@ -372,6 +375,7 @@ watch(histoires, (newImages) => {
 
     .content-stream {
         gap: 80px;
+        padding: 4rem 1rem;
     }
 
     .index-number {
@@ -385,7 +389,10 @@ watch(histoires, (newImages) => {
     }
 }
 
-@media (max-width: 702px) {
+@media (max-width: 770px) {
+    .content-stream{
+        max-width: 100%;
+    }
     #introduction h2 {
         font-size: 1.2rem;
         gap: 8px;
@@ -397,6 +404,16 @@ watch(histoires, (newImages) => {
 
     .subtitle {
         font-size: 0.8rem;
+    }
+    .text-col p {
+    font-size: 1rem;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    
+    }
+    .text-col h2 {
+        color : rgb(27, 182, 194);
+        text-shadow: 3px 0 0 rgba(15, 15, 15, 0.632);
     }
 }
 </style>
