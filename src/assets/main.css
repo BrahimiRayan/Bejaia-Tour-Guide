@@ -9,11 +9,13 @@
 }
 
 :root{
-    --mainColor : #2B3332;
+    --mainColor : #12171c;
     --bodyColor: #111312;
     --secondaryColor : #009afa;
     --mainTextcolor : #CCFBE5;
     --secondaryTextColor : #191817;
+    --deepBlue : #00a8ff;
+
 
     --maxscreenwidth : 1380px;
     --SliderQuantity:7;
@@ -29,11 +31,7 @@ body{
 }
 
 
-/* Basic header styling */
 
-
-
-/* Basic Main styling  */
 
 main{
     height: calc(100% + 150px);
@@ -42,7 +40,7 @@ main{
     max-width: var(--maxscreenwidth);
     margin: 0 auto;
     background: var(--mainColor);
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 .highlater{
